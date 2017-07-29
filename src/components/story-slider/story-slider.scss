@@ -2,7 +2,7 @@
     padding-left: 6.5rem;
     padding-right: 6.5rem;
     overflow: hidden;
-    height: 100%;
+    flex: 1;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -18,9 +18,9 @@
 
         li {
             position: relative;
-            width: 25vw;
-            height: 25vw;
-            margin: 0 2vw;
+            width: 28vw;
+            height: 28vw;
+            margin: 0 3vw;
             flex-shrink: 0;
             transition: transform .3s;
 

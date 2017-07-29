@@ -66,7 +66,11 @@ module.exports = {
             {
                 from: 'src/fonts',
                 to: 'static/fonts'
-            }
+            },
+            {
+                from: 'src/components/code-mode/lib/',
+                to: 'lib'
+            },
         ])
     ].concat(process.env.NODE_ENV === 'production' ? [
         new webpack.optimize.UglifyJsPlugin({

@@ -1,11 +1,10 @@
 @import '../../css/base';
 
 .app-toolbar {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    padding: 1rem;
+  position: relative;
+  padding: 0.8rem 1rem;
+  // position: fixed;
+  // top: 0;
 }
 
 .ble-btn {

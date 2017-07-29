@@ -15,7 +15,7 @@ const SPEED_RANGE = [0, 2000];
 const ANGLE_RANGE = [0, 100];
 
 var space = 18;
-var zoomSize = $(document).width() / 3 - space * 2;
+var zoomSize = window.innerWidth / 3 - space * 2;
 
 class ControlMode extends Component {
 
