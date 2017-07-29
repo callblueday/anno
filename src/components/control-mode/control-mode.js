@@ -9,6 +9,11 @@ const settings = {
     markCount: 0
 };
 
+// 速度范围
+const SPEED_RANGE = [0, 2000];
+// 角度范围
+const ANGLE_RANGE = [0, 100];
+
 var space = 18;
 var zoomSize = $(document).width() / 3 - space * 2;
 
@@ -40,9 +45,31 @@ class ControlMode extends Component {
     this.joystickC = this.createZone("zoneC");
     this.joystickR = this.createZone("zoneR");
 
+    this.joystickL.axisMap = {
+      "up": "A",
+      "down": "A",
+      "left": "B",
+      "right": "B"
+    };
+    this.joystickC.axisMap = {
+      "up": "C",
+      "down": "C",
+      "left": "D",
+      "right": "D"
+    };
+    this.joystickR.axisMap = {
+      "up": "X",
+      "down": "X",
+      "left": "Y",
+      "right": "Y"
+    };
+
     this.bindNipple(this.joystickL);
     this.bindNipple(this.joystickC);
     this.bindNipple(this.joystickR);
+
+    // init arm move mode.
+    action.setAbsoluteMove();
   }
 
   createZone (eleId) {
@@ -65,54 +92,29 @@ class ControlMode extends Component {
   }
 
   bindNipple (nippleObj) {
+    let that = this;
     nippleObj.on('start end', function(evt, data) {
 
     })
     .on('move', function(evt, data) {
-
+      // console.log(data.direction.angle + ':' + data.distance + ':' + data.force);
+      let axis = nippleObj.axisMap[data.direction.angle];
+      that.sendData(data, axis);
     })
     .on('dir:up dir:left dir:down dir:right', function(evt, data) {
-        console.log(data);
+
     })
     .on('pressure', function(evt, data) {
 
     });
   }
 
-  /* 象限
-   *
-   *   2 | 1
-   *   -----
-   *   3 | 4
-   */
-  calControl (distance, degree, position, direction) {
-    var speed = 255 * distance / (zoomSize * 0.5);
-    var left = 0,
-        right = 0;
-
-    // 1
-    if (degree >= 0 & degree < 90) {
-        right = speed - (90 - degree) * settings.multiple;
-        left = -speed;
-    }
-
-    // 2
-    if (degree >= 90 & degree < 180) {
-        right = speed;
-        left = -(speed - (degree - 90) * settings.multiple);
-    }
-
-    // 3
-    if (degree >= 180 & degree < 270) {
-        right = -speed;
-        left = (speed - (270 - degree) * settings.multiple);
-    }
-
-    // 4
-    if (degree >= 270 & degree < 360) {
-        right = -(speed - (degree - 270) * settings.multiple);
-        left = speed;
-    }
+  sendData (data, axis) {
+    let r = zoomSize / 2;
+    let angle = data.distance / r * ANGLE_RANGE[1];
+    let force = Math.min(data.force, 4); // let force <= 4
+    let speed = SPEED_RANGE[1] / 4 * force;
+    action.move(axis, angle, speed);
   }
 
   addJoyStickName (joystick, eleId) {

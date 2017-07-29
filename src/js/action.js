@@ -23,9 +23,10 @@ class Action {
   }
 
   // 相对单轴运动
-  move (axis, distance, speed) {
+  move (axis, angle, speed) {
     speed = (speed > 2000) ? 2000 : speed;
-    var cmd = 'G01 ' + axis + distance + ' F' + speed + '\n';
+    var cmd = 'G01 ' + axis + angle + ' F' + speed + '\n';
+    console.log(cmd);
     comm.send(cmd);
   }
 
