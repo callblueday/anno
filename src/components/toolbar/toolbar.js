@@ -21,11 +21,14 @@ class Toolbar extends React.Component {
         } = this.props;
         return (
             <section className="app-toolbar">
-              <div className="app-back">
-                <Link to="/">
-                  <FontAwesome name='arrow-left' size='2x' style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }} />
-                </Link>
-              </div>
+              <Link to="/">
+                <FontAwesome name='arrow-left' size='2x' style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }} />
+              </Link>
+
+              <button className="btn ble-btn">
+                <FontAwesome name='bluetooth' size='2x'/>
+              </button>
+
             </section>
         );
     }

@@ -1,4 +1,5 @@
 import { Emitter } from './EmitterService';
+
 class BleService {
   constructor() {
     this.type = 'ble';

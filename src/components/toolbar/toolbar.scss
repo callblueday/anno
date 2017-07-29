@@ -1,10 +1,18 @@
 @import '../../css/base';
 
 .app-toolbar {
-    width: 100%;
     position: absolute;
     left: 0;
     right: 0;
     top: 0;
     padding: 1rem;
+}
+
+.ble-btn {
+  position: absolute;
+  right: 1rem;
+  border: 1px solid #333;
+  padding: 0.3rem 0.8rem;
+  background: #fff;
+  outline: none;
 }

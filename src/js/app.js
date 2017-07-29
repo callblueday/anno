@@ -1,5 +1,5 @@
-import BleService from './services/BleService';
-import { Emitter } from './services/EmitterService';
+import BleService from '../services/BleService';
+import { Emitter } from '../services/EmitterService';
 
 /**
  * 获取QueryString
@@ -93,10 +93,6 @@ class App {
     });
   }
 
-  // 索取 deviceInfo
-  getDeviceInfo(callback){
-    this.mediumService.getDeviceInfo(callback);
-  }
   /**
    * 动态注入脚本函数
    */

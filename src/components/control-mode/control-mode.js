@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './control-mode.scss';
 import Toolbar from '../toolbar/toolbar';
 import nipplejs from 'nipplejs';
+import { action } from '../../js/action';
 
 const settings = {
     multiple: 2,
@@ -12,6 +13,18 @@ var space = 18;
 var zoomSize = $(document).width() / 3 - space * 2;
 
 class ControlMode extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      "paishe": false,
+      "penqi": false,
+      "jiaqu": false,
+      "xiqu": false,
+      "hanjie": false
+    }
+  }
+
   componentDidMount() {
     this.init();
   }
@@ -112,17 +125,46 @@ class ControlMode extends Component {
     joystick.get().ui.front.innerHTML = nameElStr;
   }
 
+  toggle (e) {
+    let type = e.target.getAttribute("data-mode");
+    let newState = {};
+    newState[type] = !this.state[type];
+
+    // close other mode.
+    if(newState[type]) {
+      for(var i in this.state) {
+        if(i !== type && this.state[i]) {
+          newState[i] = false;
+        }
+      }
+    }
+
+    this.setState(newState);
+    let mode = type + '-' + (newState[type] ? 'open' : 'close');
+    action.setMode(mode);
+  }
+
   render () {
     return (
       <section className="box control-mode">
         <Toolbar />
         <div className="box-content control-content">
           <div className="tool-bar">
-            <button className="cbtn">模式1</button>
-            <button className="cbtn">模式2</button>
-            <button className="cbtn">模式3</button>
-            <button className="cbtn">模式4</button>
-            <button className="cbtn">模式5</button>
+            <button data-mode="paishe" className={
+              this.state["paishe"] ? "cbtn btn-active" : "cbtn"
+            } onTouchStart={this.toggle.bind(this)}>拍摄</button>
+            <button data-mode="penqi" className={
+              this.state["penqi"] ? "cbtn btn-active" : "cbtn"
+            } onTouchStart={this.toggle.bind(this)}>喷漆</button>
+            <button data-mode="jiaqu" className={
+              this.state["jiaqu"] ? "cbtn btn-active" : "cbtn"
+            } onTouchStart={this.toggle.bind(this)}>夹取</button>
+            <button data-mode="xiqu" className={
+              this.state["xiqu"] ? "cbtn btn-active" : "cbtn"
+            } onTouchStart={this.toggle.bind(this)}>吸取</button>
+            <button data-mode="hanjie" className={
+              this.state["hanjie"] ? "cbtn btn-active" : "cbtn"
+            } onTouchStart={this.toggle.bind(this)}>焊接</button>
           </div>
 
           <div className="zone-wrapper">

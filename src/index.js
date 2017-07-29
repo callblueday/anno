@@ -9,7 +9,7 @@ import reducers from './reducers/gui';
 import HomePage from './components/home-page/home-page';
 import CodeMode from './components/code-mode/code-mode';
 import ControlMode from './components/control-mode/control-mode';
-import App from './app';
+import App from './js/app';
 
 const store = createStore(reducers);
 
