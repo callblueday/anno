@@ -1,0 +1,13 @@
+# Build and Release Folders
+bin/
+bin-debug/
+bin-release/
+vendors/closure-library
+
+build
+
+# Other files and folders
+.vscode/
+**/*.DS_Store
+node_modules
+**/*/node_modules

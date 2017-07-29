@@ -1,0 +1,52 @@
+@import './reset';
+
+/* 字体颜色 */
+$gray: #666;
+$gray-dark: #333;
+$gray-light: #999;
+
+/* 顶部工具栏高度 */
+$toolbar-height: 7rem;
+
+/* 左侧工具栏宽度 */
+$toolbox-width: 11rem;
+
+.fa {
+  color: #000;
+}
+
+.box {
+  width: 100%;
+  height: 100%;
+}
+.box-content {
+  height: 100%;
+}
+
+.cbtn {
+    background-image: none;
+    border: 1px solid transparent;
+    touch-action: manipulation;
+    border-radius: 4px;
+    user-select: none;
+    background: #fff;
+    transition: all .3s cubic-bezier(.645,.045,.355,1);
+    position: relative;
+    color: rgba(0,0,0,.65);
+    background-color: #fff;
+    border-color: #d9d9d9;
+    outline: none;
+    padding: 0.4rem 1rem;
+    font-size: 1.5rem;
+    margin: 0 1rem;
+}
+
+.cbtn:hover {
+    color: #108ee9;
+    border-color: #108ee9;
+}
+
+.cbtn:active {
+    position: relative;
+    top: 3px;
+}
