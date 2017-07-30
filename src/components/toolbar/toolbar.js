@@ -26,7 +26,7 @@ class Toolbar extends React.Component {
                 <FontAwesome name='arrow-left' size='2x' style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }} />
               </Link>
 
-              <button className="btn ble-btn" onTouchStart={onBleBtnTap}>
+              <button className="ble-btn" onTouchStart={onBleBtnTap}>
                 <FontAwesome name='bluetooth' size='2x'/>
               </button>
 

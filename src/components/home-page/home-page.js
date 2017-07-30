@@ -7,6 +7,10 @@ import './home-page.scss';
 
 const appList = [
   {
+    "text": "调试模式",
+    "name": "cmdMode"
+  },
+  {
     "text": "手柄模式",
     "name": "controlMode"
   },

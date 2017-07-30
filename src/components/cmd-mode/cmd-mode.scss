@@ -1,0 +1,44 @@
+@import '../../css/base';
+
+.cmd-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  padding: 0;
+}
+
+.msg {
+  height: 200px;
+  color: #ddd;
+  padding: 5px;
+  background: rgba(0,0,0,.8);
+  overflow: auto;
+}
+
+form {
+  margin-top: 20px;
+}
+
+.cmd {
+  padding-left: 0;
+  padding-right: 6px;
+}
+.cmd-input {
+  padding: 8px;
+  width: 100%!important;
+}
+
+.menus {
+  width: 100%;
+}
+
+#btn-cmd-add {
+  display: block;
+  float: right;
+}
+
+.opts {
+  padding: 0 2rem;
+}

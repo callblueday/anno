@@ -46,13 +46,13 @@ class Comm {
 
   receiveData () {
     var self = this;
-    if(typeof ble != "undefined") {
+    if(typeof ble != 'undefined') {
 
       if (ble && ble.connectedDeviceID) {
         ble.startNotification(ble.connectedDeviceID, self.settings.commServiceID, self.settings.readCharacteristicID, function(data) {
           var bufArray = self.arrayFromArrayBuffer(data);
           // read success
-          parse.doParse(bufArray);
+          console.log(data);
 
         }, function(err) {
           // read failure

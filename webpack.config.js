@@ -70,6 +70,18 @@ module.exports = {
             {
                 from: 'src/components/code-mode/lib/',
                 to: 'lib'
+            },
+            {
+                from: 'src/components/cmd-mode/lib/bootstrap.min.css',
+                to: 'static/css'
+            },
+            {
+                from: 'src/components/cmd-mode/lib/bootstrap.min.js',
+                to: 'static/js'
+            },
+            {
+                from: 'src/components/cmd-mode/lib/jquery-2.1.3.min.js',
+                to: 'static/js'
             }
         ])
     ].concat(process.env.NODE_ENV === 'production' ? [
