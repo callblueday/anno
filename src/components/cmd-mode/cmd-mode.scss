@@ -3,6 +3,12 @@
 .cmd-content {
   display: flex;
   flex-direction: row;
+}
+
+
+::i-block-chrome, .cmd-content {
+  display: flex;
+  flex-direction: row;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -13,7 +19,6 @@
 }
 
 .msg, .opts {
-  height: 100%;
   overflow: hidden;
 }
 .msg {
