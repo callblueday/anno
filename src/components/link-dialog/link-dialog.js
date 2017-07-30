@@ -10,12 +10,15 @@ const {
     toggleLinkDialog
 } = require('../../reducers/interface');
 
+const {
+    bleConnected,
+    bleDisconnect
+} = require('../../reducers/ble');
+
 class LinkDialog extends Component {
 
   constructor(props) {
     super(props);
-    this.isOpen = false;
-    this.onConnect = null;
     this.deviceId = null;
 
     this.state = {
@@ -54,22 +57,11 @@ class LinkDialog extends Component {
     this.startScan();
   }
 
-  close () {
-    this.props.close();
-  }
-
   startScan () {
     let self = this;
-    console.log(1);
-    this.setState({
-      bleDeviceList: []
-    });
-
+    this.setState({ bleDeviceList: [] });
     if(typeof ble != 'undefined'){
       ble.startScan([], function(device){
-        // if(!device.name || device.name.indexOf('Makeblock') == -1){
-        //   return;
-        // }
         var distance = Math.pow(10.0,((Math.abs(parseInt(device.rssi))-50.0)/50.0))*0.7;
         self.addDevice(device.name, distance, device.id);
       });
@@ -93,7 +85,12 @@ class LinkDialog extends Component {
   }
 
   open () {
-    this.setState({ showModal: true });
+    this.props.open();
+    this.startScan();
+  }
+
+  close () {
+    this.props.close();
   }
 
   disconnect(deviceId) {
@@ -109,37 +106,29 @@ class LinkDialog extends Component {
   // connect to the device
   connect (deviceId, e) {
     let self = this;
-
     console.log(deviceId);
-
     if(typeof ble === 'undefined'){
       self.close();
       return;
     }
 
-    if(deviceId != self.deviceId) {
-        self.disconnect(deviceId);
+    if(self.deviceId && deviceId != self.deviceId) {
+      self.disconnect(deviceId);
     }
 
     ble.stopScan();
     self.deviceId = deviceId;
-    ble.connect(self.deviceId, function(){  // connect success
+    ble.connect(self.deviceId, function () {  // connect success
       console.log('connect success');
-      if(self.onConnect) {
-        ble.connectedDeviceID = self.deviceId;
-        self.onConnect();
-        comm.receiveData();
-      }
+      ble.connectedDeviceID = self.deviceId;
+      comm.receiveData();
       self.close();
-      e.preventDefault();
-
+      e.persist();
     }, function(){  // connect failure
       console.log('connect failure');
-      if(!self.isOpen) {
-
-      }
-      else{
-        self.startScan();
+      if(!self.props.dialogVisible) {
+        // 弹出蓝牙界面
+        self.open();
       }
     });
   }
@@ -183,14 +172,27 @@ class LinkDialog extends Component {
 }
 
 const mapStateToProps = state => ({
-    dialogVisible: state.interface.dialogVisible
+  dialogVisible: state.interface.dialogVisible,
+  bleConnected: state.ble.bleConnected,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   close: (e) => {
     e && e.preventDefault();
     dispatch(closeLinkDialog())
-  }
+  },
+
+  open: (e) => {
+    dispatch(openLinkDialog())
+  },
+
+  bleConnect: (e) => {
+    dispatch(bleConnected())
+  },
+
+  bleDisconnect: (e) => {
+    dispatch(bleDisconnect())
+  },
 })
 
 export default connect(

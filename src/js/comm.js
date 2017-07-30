@@ -4,8 +4,6 @@
 
 class Comm {
   constructor(props) {
-
-
     this.settings = {
       isConnected: false,
       commServiceID: 'FFE1',
@@ -65,34 +63,35 @@ class Comm {
   }
 
   send (buf, type) {
-      var self = this;
-      var cmdType = type ? type : "ascii";
-      var cmd = buf;
-      if(cmdType != "hex") {
-        console.log(cmd);
-      } else {
-        console.log(buf.join(", "));
-        cmd = self.arrayBufferFromArray(buf);
-      }
+    var self = this;
+    var cmdType = type ? type : "ascii";
+    var cmd = buf;
+    if(cmdType != "hex") {
+      console.log(cmd);
+    } else {
+      console.log(buf.join(", "));
+      cmd = self.arrayBufferFromArray(buf);
+    }
 
-      if(typeof ble != "undefined") {
-        if (ble && ble.connectedDeviceID) {
-          ble.writeWithoutResponse(ble.connectedDeviceID, self.settings.commServiceID,
-            self.settings.writeCharacteristicID, cmd,
-            function() {
-              if (!self.isConnected) {
-                self.receiveData();
-              }
-              self.isConnected = true;
-            },
-            function(err) {
-              console.log('write error, ', err);
-              ble.stopNotification(ble.connectedDeviceID, self.settings.commServiceID, self.settings.readCharacteristicID);
-              self.isConnected = false;
+    if(typeof ble != 'undefined') {
+      if (ble && ble.connectedDeviceID) {
+        ble.writeWithoutResponse(ble.connectedDeviceID, self.settings.commServiceID,
+          self.settings.writeCharacteristicID, cmd,
+          function() {
+            console.log('send success');
+            if (!self.isConnected) {
+              self.receiveData();
             }
-          );
-        }
+            self.isConnected = true;
+          },
+          function(err) {
+            console.log('write error, ', err);
+            ble.stopNotification(ble.connectedDeviceID, self.settings.commServiceID, self.settings.readCharacteristicID);
+            self.isConnected = false;
+          }
+        );
       }
+    }
   }
 }
 

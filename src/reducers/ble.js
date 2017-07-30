@@ -3,7 +3,7 @@ const BLUETOOTH_DISCONNECTED = 'bluetooth_disconnected';
 const BLUETOOTH_RECEIVED = 'bluetooth_received';
 
 const initialState = {
-  "status": false,
+  "bleConnected": false,
   "message": ""
 };
 
@@ -11,11 +11,11 @@ const bluetooth = function (state = initialState, action) {
   switch (action.type) {
     case BLUETOOTH_CONNECTED:
       return Object.assign({}, state, {
-        status: true
+        bleConnected: true
       });
     case BLUETOOTH_DISCONNECTED:
       return Object.assign({}, state, {
-        status: false
+        bleConnected: false
       });
     case BLUETOOTH_RECEIVED:
       return Object.assign({}, state, {
@@ -26,21 +26,21 @@ const bluetooth = function (state = initialState, action) {
   }
 };
 
-bluetooth.btConnect = function (status) {
+bluetooth.bleConnected = function (status) {
     return {
         type: BLUETOOTH_CONNECTED,
         status: status
     }
 };
 
-bluetooth.btDisconnect = function (status) {
+bluetooth.bleDisconnect = function (status) {
     return {
         type: BLUETOOTH_DISCONNECTED,
         status: status
     }
 };
 
-bluetooth.btReceive = function (message) {
+bluetooth.bleReceive = function (message) {
     return {
         type: BLUETOOTH_DISCONNECTED,
         message: message
