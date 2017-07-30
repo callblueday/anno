@@ -154,19 +154,19 @@ class ControlMode extends Component {
         <div className="box-content control-content">
           <div className="tool-bar">
             <button data-mode="paishe" className={
-              this.state["paishe"] ? "cbtn btn-active" : "cbtn"
+              this.state["paishe"] ? "cbtn btn-selected" : "cbtn"
             } onTouchStart={this.toggle.bind(this)}>拍摄</button>
             <button data-mode="penqi" className={
-              this.state["penqi"] ? "cbtn btn-active" : "cbtn"
+              this.state["penqi"] ? "cbtn btn-selected" : "cbtn"
             } onTouchStart={this.toggle.bind(this)}>喷漆</button>
             <button data-mode="jiaqu" className={
-              this.state["jiaqu"] ? "cbtn btn-active" : "cbtn"
+              this.state["jiaqu"] ? "cbtn btn-selected" : "cbtn"
             } onTouchStart={this.toggle.bind(this)}>夹取</button>
             <button data-mode="xiqu" className={
-              this.state["xiqu"] ? "cbtn btn-active" : "cbtn"
+              this.state["xiqu"] ? "cbtn btn-selected" : "cbtn"
             } onTouchStart={this.toggle.bind(this)}>吸取</button>
             <button data-mode="hanjie" className={
-              this.state["hanjie"] ? "cbtn btn-active" : "cbtn"
+              this.state["hanjie"] ? "cbtn btn-selected" : "cbtn"
             } onTouchStart={this.toggle.bind(this)}>焊接</button>
           </div>
 

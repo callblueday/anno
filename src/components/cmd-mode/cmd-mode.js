@@ -52,81 +52,81 @@ class CmdMode extends Component {
     $('.msg').animate({scrollTop: scrollOffset}, 0);
   }
 
+  change (e) {
+
+  }
+
   render () {
     return (
       <section className="box cmd-mode">
         <Toolbar />
         <div className="box-content cmd-content">
-          <div className="workspace">
-            <div className="msg">
-              <p>hello</p>
-            </div>
+          <div className="msg">
+          </div>
 
-            <div className="opts">
-              <form>
-                <label className="radio-inline">
-                  <input type="radio" name="cmdMode" id="" value="hex" /> HEX
-                </label>
-                <label className="radio-inline">
-                  <input type="radio" name="cmdMode" id="" value="acsii" checked /> ASCII
-                </label>
-              </form>
+          <div className="opts">
+            <form className="cmd-type">
+              <label className="radio-inline">
+                <input type="radio" name="cmdMode" id="" value="hex" /> HEX
+              </label>
+              <label className="radio-inline">
+                <input type="radio" name="cmdMode" id="" value="acsii" checked onChange={this.change}/> ASCII
+              </label>
+            </form>
 
-              <form className="form-inline ops">
-                <div className="cmd-item">
-                  <div className="form-group col-xs-9 cmd">
-                    <input type="text" className="form-control cmd-input" placeholder="ff 55 03 00 01 00" defaultValue="ff 55 06 00 02 0a 09 ff 00" />
-                  </div>
-                  <button type="button" className="btn btn-default col-xs-3 btn-send" onTouchStart={this.send.bind(this)}>Send</button>
+            <form className="form-inline ops">
+              <div className="cmd-item">
+                <div className="form-group col-xs-9 cmd">
+                  <input type="text" className="form-control cmd-input" placeholder="ff 55 03 00 01 00" defaultValue="ff 55 06 00 02 0a 09 ff 00" />
                 </div>
-                <div className="cmd-item">
-                  <div className="form-group col-xs-9 cmd">
-                    <input type="text" className="form-control cmd-input" placeholder="ff 55 03 00 01 00" defaultValue="ff 55 06 00 02 0a 09 00 00" />
-                  </div>
-                  <button type="button" className="btn btn-default col-xs-3 btn-send" onTouchStart={this.send.bind(this)}>Send</button>
-                </div>
-
-                <div className="cmd-item">
-                  <div className="form-group col-xs-9 cmd">
-                    <input type="text" className="form-control cmd-input" placeholder="G91" defaultValue="G91" />
-                  </div>
-                  <button type="button" className="btn btn-default col-xs-3 btn-send" onTouchStart={this.send.bind(this)}>Send</button>
-                </div>
-
-                <div className="cmd-item">
-                  <div className="form-group col-xs-9 cmd">
-                    <input type="text" className="form-control cmd-input" placeholder="G01 A10 F2000" defaultValue="G01 A10 F2000" />
-                  </div>
-                  <button type="button" className="btn btn-default col-xs-3 btn-send" onTouchStart={this.send.bind(this)}>Send</button>
-                </div>
-
-                <div className="cmd-item">
-                  <div className="form-group col-xs-9 cmd">
-                    <input type="text" className="form-control cmd-input" placeholder="G90" defaultValue="G90" />
-                  </div>
-                  <button type="button" className="btn btn-default col-xs-3 btn-send" onTouchStart={this.send.bind(this)}>Send</button>
-                </div>
-
-                <div className="cmd-item">
-                  <div className="form-group col-xs-9 cmd">
-                    <input type="text" className="form-control cmd-input" placeholder="G01 A10 F2000" defaultValue="G01 A10 F2000" />
-                  </div>
-                  <button type="button" className="btn btn-default col-xs-3 btn-send" onTouchStart={this.send.bind(this)}>Send</button>
-                </div>
-
-                <div className="cmd-item">
-                  <div className="form-group col-xs-9 cmd">
-                    <input type="text" className="form-control cmd-input" placeholder="G01 A10 B10 C10 D10 X10 F2000" defaultValue="G01 A10 B10 C10 D10 X10 F2000" />
-                  </div>
-                  <button type="button" className="btn btn-default col-xs-3 btn-send" onTouchStart={this.send.bind(this)}>Send</button>
-                </div>
-              </form>
-
-              <div className="col-xs-12 menus">
-                <button id="btn-cmd-add" className="btn fa fa-plus"></button>
+                <button type="button" className="btn btn-default col-xs-3 btn-send" onTouchStart={this.send.bind(this)}>Send</button>
               </div>
-            </div>
+              <div className="cmd-item">
+                <div className="form-group col-xs-9 cmd">
+                  <input type="text" className="form-control cmd-input" placeholder="ff 55 03 00 01 00" defaultValue="ff 55 06 00 02 0a 09 00 00" />
+                </div>
+                <button type="button" className="btn btn-default col-xs-3 btn-send" onTouchStart={this.send.bind(this)}>Send</button>
+              </div>
 
+              <div className="cmd-item">
+                <div className="form-group col-xs-9 cmd">
+                  <input type="text" className="form-control cmd-input" placeholder="G91" defaultValue="G91" />
+                </div>
+                <button type="button" className="btn btn-default col-xs-3 btn-send" onTouchStart={this.send.bind(this)}>Send</button>
+              </div>
+
+              <div className="cmd-item">
+                <div className="form-group col-xs-9 cmd">
+                  <input type="text" className="form-control cmd-input" placeholder="G01 A10 F2000" defaultValue="G01 A10 F2000" />
+                </div>
+                <button type="button" className="btn btn-default col-xs-3 btn-send" onTouchStart={this.send.bind(this)}>Send</button>
+              </div>
+
+              <div className="cmd-item">
+                <div className="form-group col-xs-9 cmd">
+                  <input type="text" className="form-control cmd-input" placeholder="G90" defaultValue="G90" />
+                </div>
+                <button type="button" className="btn btn-default col-xs-3 btn-send" onTouchStart={this.send.bind(this)}>Send</button>
+              </div>
+
+              <div className="cmd-item">
+                <div className="form-group col-xs-9 cmd">
+                  <input type="text" className="form-control cmd-input" placeholder="G01 A10 F2000" defaultValue="G01 A10 F2000" />
+                </div>
+                <button type="button" className="btn btn-default col-xs-3 btn-send" onTouchStart={this.send.bind(this)}>Send</button>
+              </div>
+
+              <div className="cmd-item">
+                <div className="form-group col-xs-9 cmd">
+                  <input type="text" className="form-control cmd-input" placeholder="G01 A10 B10 C10 D10 X10 F2000" defaultValue="G01 A10 B10 C10 D10 X10 F2000" />
+                </div>
+                <button type="button" className="btn btn-default col-xs-3 btn-send" onTouchStart={this.send.bind(this)}>Send</button>
+              </div>
+            </form>
+
+            <div className="col-xs-12 menus">
+              <button id="btn-cmd-add" className="btn fa fa-plus"></button>
+            </div>
           </div>
         </div>
         <LinkDialog />
