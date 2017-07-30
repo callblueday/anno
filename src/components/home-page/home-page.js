@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import StorySlider from '../story-slider/story-slider';
 import { connect } from 'react-redux';
 import Toolbar from '../toolbar/toolbar';
+import LinkDialog from '../link-dialog/link-dialog';
 import './home-page.scss';
 
 const appList = [
@@ -21,6 +22,7 @@ class HomePage extends Component {
       <section className="app-body">
         <Toolbar />
         <StorySlider list={appList} />
+        <LinkDialog />
       </section>
     )
   }

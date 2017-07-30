@@ -1,0 +1,76 @@
+@import '../../css/base';
+
+.ReactModalPortal {
+  z-index: 999999;
+}
+
+.Modal {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  right: 2rem;
+  bottom: 2rem;
+  background: #fff;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 2rem;
+  border: 0;
+  border-radius: 0.5rem;
+  outline: none;
+}
+
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.8);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dialogHeader {
+  font-size: 26px;
+  padding: 0 ;
+  height: 3rem;
+}
+
+.dialogHeader i {
+  padding: 10px;
+}
+
+.headerRight i:active, .connectList li:active{
+  background-color: #ccc;
+}
+
+.dialogHeader .headerRight {
+  float: right;
+}
+
+.connectList {
+  flex: 1;
+  padding: 0;
+  padding-top: 1rem;
+  overflow-y: auto;
+}
+
+.connectList li {
+  display: flex;
+  flex-direction: row;
+  font-size: 28px;
+  padding: 0.8rem 0.3rem;
+  color: #333;
+  list-style: none;
+  overflow: hidden;
+  font-size: 1.2rem;
+}
+
+.connectList .distance {
+  width: 6rem;
+  text-align: center;
+}
+.connectList .mac_address {
+  flex: 1;
+}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './control-mode.scss';
 import Toolbar from '../toolbar/toolbar';
 import nipplejs from 'nipplejs';
+import LinkDialog from '../link-dialog/link-dialog';
 import { action } from '../../js/action';
 
 const settings = {
@@ -175,6 +176,7 @@ class ControlMode extends Component {
             <div className="zone" id="zoneR"></div>
           </div>
         </div>
+        <LinkDialog />
       </section>
     );
   }

@@ -42,10 +42,12 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    padding-right: 0.3rem!important;
+    padding-left: 0.3rem!important;
 }
 
 .blocklyTreeRoot div/* [role="treeitem"] */ .blocklyTreeRow .blocklyTreeIcon {
-    display: none;
+    display: none!important;
 }
 .blocklyTreeRoot div/* [role="treeitem"] */ .blocklyTreeRow .blocklyTreeLabel {
     height: 30px;

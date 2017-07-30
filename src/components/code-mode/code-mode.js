@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Toolbar from '../toolbar/toolbar';
 import RunButton from './run-button/run-button';
+import LinkDialog from '../link-dialog/link-dialog';
 
 import './code-mode.scss';
 
@@ -348,6 +349,7 @@ class CodeMode extends Component {
 
         </div>
         <RunButton />
+        <LinkDialog />
       </section>
     );
   }

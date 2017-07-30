@@ -70,7 +70,7 @@ module.exports = {
             {
                 from: 'src/components/code-mode/lib/',
                 to: 'lib'
-            },
+            }
         ])
     ].concat(process.env.NODE_ENV === 'production' ? [
         new webpack.optimize.UglifyJsPlugin({

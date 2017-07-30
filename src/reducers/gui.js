@@ -1,6 +1,6 @@
 const {combineReducers} = require('redux');
 
 module.exports = combineReducers({
-    applist: require('./applist'),
+    interface: require('./interface'),
     ble: require('./ble')
 });
