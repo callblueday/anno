@@ -1,0 +1,10 @@
+@import '../../css/base';
+@import './grid';
+
+.keyboard-content {
+  display: flex;
+  flex-direction: row;
+  height: 100% ;
+  position: relative;
+  overflow: hidden;
+}

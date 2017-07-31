@@ -82,6 +82,14 @@ module.exports = {
             {
                 from: 'src/components/cmd-mode/lib/jquery-2.1.3.min.js',
                 to: 'static/js'
+            },
+            {
+                from: 'src/components/keyboard-mode/js/classie.js',
+                to: 'static/js'
+            },
+            {
+                from: 'src/components/keyboard-mode/js/modernizr.custom.js',
+                to: 'static/js'
             }
         ])
     ].concat(process.env.NODE_ENV === 'production' ? [

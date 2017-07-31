@@ -2,7 +2,7 @@ const LINKDIALOG_SHOW = 'linkdialog_show';
 const LINKDIALOG_HIDE = 'linkdialog_hide';
 
 const initialState = {
-  "dialogVisible": true,
+  "dialogVisible": false,
   "message": ""
 };
 
