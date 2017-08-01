@@ -11,6 +11,15 @@ $toolbar-height: 7rem;
 /* 左侧工具栏宽度 */
 $toolbox-width: 11rem;
 
+
+* {
+  user-select: none;
+}
+
+a {
+  text-decoration: none!important;
+}
+
 .fa {
   color: #000;
 }

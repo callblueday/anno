@@ -23,7 +23,7 @@ export default class StorySlider extends Component {
     this.swiper = new Swiper('.swiper-container', {
       initialSlide: 0,
       slidesPerView: 'auto',
-      slidesPerGroup: 3
+      slidesPerGroup: 1
     });
   }
 
