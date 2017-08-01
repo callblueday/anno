@@ -11,7 +11,7 @@ import CodeMode from './components/code-mode/code-mode';
 import ControlMode from './components/control-mode/control-mode';
 import CmdMode from './components/cmd-mode/cmd-mode';
 import KeyboardMode from './components/keyboard-mode/keyboard-mode';
-// import App from './js/app';
+import App from './js/app';
 
 const store = createStore(reducers);
 
