@@ -1,5 +1,14 @@
 import { comm } from './comm';
 
+const angleRange = {
+  "J1": [-180, 180],
+  "J2": [-120, 120],
+  "J3": [-120, 120],
+  "J4": [-180, 180],
+  "J5": [-180, 180],
+  "J6": [0, 120]
+};
+
 class Action {
   constructor(props) {
 
@@ -26,7 +35,6 @@ class Action {
   move (axis, angle, speed) {
     speed = (speed > 2000) ? 2000 : speed;
     var cmd = 'G01 ' + axis + angle + ' F' + speed + '\n';
-    console.log(cmd);
     comm.send(cmd);
   }
 

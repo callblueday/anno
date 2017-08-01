@@ -1,26 +1,23 @@
+import BlockBuilder from './block-builder';
+
 const IntervalBetweenSteps = 0;
 
-class Runtime {
+export default class Runtime {
   constructor(props) {
     this.onFinish = null;
     this.highlightPause = false;
     this.stepTimer = null;
     this.isFinished = false;
-    this.nextStepDelay = MBlockly.Runtime.IntervalBetweenSteps;
+    this.nextStepDelay = IntervalBetweenSteps;
     this.topBlockID = 0;
-    this.widgetId = id ? id : null;
-
+    this.workspace = null;
     this.OPEN_HIGHLIGHT = true;
   }
 
   highlightBlock (id) {
-    if(this.OPEN_HIGHLIGHT) {
-      // when 代码块不进行高亮
-      if(id != this.topBlockID){
-        workspace.highlightBlock(id);
-      }
-      this.highlightPause = true;
-    }
+    console.log(id);
+    this.workspace.highlightBlock(id);
+    this.highlightPause = true;
   }
 
   print (msg){
@@ -28,12 +25,15 @@ class Runtime {
   }
 
   doInterpreter (code) {
+    this.workspace = Blockly.getMainWorkspace();
     this.evalCodeViaJsInterpreter(code);
   }
 
-  parseCode (startBlock){
+  static parseCode (startBlock) {
     // Generate JavaScript code and parse it.
     var code;
+
+    this.workspace = Blockly.getMainWorkspace();
 
     // Highlight code
     if(this.OPEN_HIGHLIGHT) {
@@ -42,30 +42,21 @@ class Runtime {
     }
 
     if(startBlock){
-      Blockly.JavaScript.init(workspace);
+      Blockly.JavaScript.init(this.workspace);
       code = Blockly.JavaScript.blockToCode(startBlock);
       if(typeof code == "object") {
         code = code[0] + ";";
       }
       code = Blockly.JavaScript.finish(code);
     }
-    else{
+    else {
       // 没有顶部 block 块的代码生成，实际就是对整个 workspace 的代码进行生成.
-      code = Blockly.JavaScript.workspaceToCode(workspace);
+      code = Blockly.JavaScript.workspaceToCode(this.workspace);
     }
 
     this.topBlockID = startBlock ? startBlock.id : 0;
 
     code = code.split("window.alert").join("print");
-    var array = code.split("\n");
-    for (var i = 0; i < array.length; i++) {
-      var c = array[i];
-      if (c.indexOf("getSensorValue") > -1) {
-        var split = "getSensorValue" + c.split("getSensorValue")[1].split(")")[0] + ")";
-        var output = split + ";\n"+c.split(split).join("getResponseValue()") + "\n" ;
-        code = code.split(c).join(output);
-      }
-    }
     return code;
   }
 
@@ -77,11 +68,7 @@ class Runtime {
     // 注册 block 块对应的方法
     this.interpreter = new Interpreter(code, this.initApi);
     this.interpreter.runtime = this;
-    if(this.OPEN_HIGHLIGHT) {
-      this.highlightPause = false;
-      workspace.traceOn(true);
-      workspace.highlightBlock(null);
-    }
+    this.highlightPause = true;
     // 分步解析代码块
     this.step();
   }
@@ -89,12 +76,13 @@ class Runtime {
   step () {
     var that = this;
     if(this.isFinished) {
+      this.callback && this.callback();
       return;
     }
     if(this.isPaused && !this.isFinished){
       return;
     }
-    try{
+    // try{
       if(this.interpreter.step()){
         var delay = this.nextStepDelay;
           // 当设置了 wait 以后，记得还原正常nextStep的值
@@ -109,13 +97,13 @@ class Runtime {
           this.stop();
         }
       }
-    }
-    catch (err){
-      console.log("【error】" + err);
-      if(err == 'BleDisconnected'){
-        this.stop();
-      }
-    }
+    // }
+    // catch (err){
+    //   console.log("【error】" + err);
+    //   if(err == 'BleDisconnected'){
+    //     this.stop();
+    //   }
+    // }
   }
 
   wait (time){
@@ -171,7 +159,7 @@ class Runtime {
     interpreter.setProperty(scope, 'wait', interpreter.createNativeFunction(wrapper));
 
     // Add API function for other customize blocks defined in blocks_*.js
-    var keepedBlocks = MBlockly.BlockKeeper.getBlocks();
+    var keepedBlocks = BlockBuilder.getBlocks();
     var that = this;
     for(var blockName in keepedBlocks) {
       var block = keepedBlocks[blockName];
@@ -186,5 +174,3 @@ class Runtime {
     }
   }
 }
-
-exports default Runtime;

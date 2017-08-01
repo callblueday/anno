@@ -2,17 +2,41 @@ import React, { Component } from 'react';
 import Toolbar from '../toolbar/toolbar';
 import RunButton from './run-button/run-button';
 import LinkDialog from '../link-dialog/link-dialog';
+import BlockMove from './js/block-move';
+import StartBlocks from './js/block-start';
+import ControlBlocks from './js/block-control';
 
 import './code-mode.scss';
 
 class CodeMode extends Component {
+  constructor(props) {
+    super(props);
+
+  }
+
   componentDidMount() {
-    this.renderXml();
+    // this.renderXml();
     this.injectBlockly();
+    this.addBlocks();
+    this.addStartBlockToStage();
   }
 
   componentWillUnmount() {
 
+  }
+
+  addStartBlockToStage () {
+    var xmlData = `
+      <xml><block type="when_start" id="@fiknb:[[;iHSVP%1rqe" x="65" y="23"></block></xml>
+    `;
+    var xml = Blockly.Xml.textToDom(xmlData);
+    Blockly.Xml.domToWorkspace(xml, Blockly.mainWorkspace);
+  }
+
+  addBlocks () {
+    new BlockMove();
+    new StartBlocks();
+    new ControlBlocks();
   }
 
   renderXml () {

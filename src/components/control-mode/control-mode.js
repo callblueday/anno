@@ -47,22 +47,22 @@ class ControlMode extends Component {
     this.joystickR = this.createZone("zoneR");
 
     this.joystickL.axisMap = {
-      "up": "A",
-      "down": "A",
-      "left": "B",
-      "right": "B"
+      "up": "J1",
+      "down": "J1",
+      "left": "J2",
+      "right": "J2"
     };
     this.joystickC.axisMap = {
-      "up": "C",
-      "down": "C",
-      "left": "D",
-      "right": "D"
+      "up": "J3",
+      "down": "J3",
+      "left": "J4",
+      "right": "J4"
     };
     this.joystickR.axisMap = {
-      "up": "X",
-      "down": "X",
-      "left": "Y",
-      "right": "Y"
+      "up": "J5",
+      "down": "J5",
+      "left": "J6",
+      "right": "J6"
     };
 
     this.bindNipple(this.joystickL);
@@ -120,9 +120,9 @@ class ControlMode extends Component {
 
   addJoyStickName (joystick, eleId) {
     var nameMaps = {
-        "zoneL": "A-B",
-        "zoneC": "X-Y",
-        "zoneR": "C-D"
+        "zoneL": "J1-J2",
+        "zoneC": "J3-J4",
+        "zoneR": "J5-J6"
     };
     var nameElStr = '<span class="joystick-name">' + nameMaps[eleId] + '</span>'
     joystick.get().ui.front.innerHTML = nameElStr;
