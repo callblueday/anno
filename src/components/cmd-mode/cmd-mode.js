@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Toolbar from '../toolbar/toolbar';
 import LinkDialog from '../link-dialog/link-dialog';
 import { comm } from '../../js/comm';
+import { Emitter } from '../../js/emitter';
 import './cmd-mode.scss';
 
 class CmdMode extends Component {
@@ -11,6 +12,10 @@ class CmdMode extends Component {
   }
 
   componentDidMount() {
+    let self = this;
+    Emitter.on('ReceiveDataFromBle', function(data) {
+      self.addMsg(data, 'back');
+    });
 
   }
 
@@ -40,8 +45,12 @@ class CmdMode extends Component {
     comm.send(cmd, cmdType);
   }
 
-  addMsg (msgStr) {
-    var p = msgStr + "<br/>";
+  addMsg (msgStr, type) {
+    let className = 'cmd-item';
+    if(type === 'back') {
+      className = 'cmd-item-back';
+    }
+    var p = `<p class=${className}>${msgStr}</p>`;
     $('.msg').append(p);
     this.toBottom();
   }

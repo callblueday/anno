@@ -47,6 +47,13 @@ form {
   margin-top: 20px;
 }
 
+.cmd-item {
+
+}
+.cmd-item-back {
+  color: #95ef6d;
+}
+
 .cmd {
   padding-left: 0;
   padding-right: 6px;
@@ -65,3 +72,9 @@ form {
   float: right;
 }
 
+
+@media (min-width: 768px) {
+  .form-inline .form-group {
+    margin-bottom: 15px;
+  }
+}

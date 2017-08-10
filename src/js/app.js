@@ -1,4 +1,5 @@
-import { BrowserRouter, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { comm } from './comm';
 
 class App {
 
@@ -20,6 +21,8 @@ class App {
         document.removeEventListener("backbutton", exitApp, false); // 注销返回键
         document.addEventListener("backbutton", onBackKeyDown, false); // 返回键
       }, 3000);
+
+      comm.disconnect();
     };
 
     document.addEventListener('backbutton', onBackKeyDown);

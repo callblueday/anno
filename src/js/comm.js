@@ -1,3 +1,5 @@
+import { Emitter } from './emitter';
+
 /**
  * @fileOverview bluetooth communication.
  */
@@ -48,10 +50,13 @@ class Comm {
 
       if (ble && ble.connectedDeviceID) {
         ble.startNotification(ble.connectedDeviceID, self.settings.commServiceID, self.settings.readCharacteristicID, function(data) {
-          var bufArray = self.arrayFromArrayBuffer(data);
           // read success
-          console.log(data);
-
+          let result = data;
+          if(typeof data == 'object') {
+            result = self.arrayFromArrayBuffer(data).join(" ");
+          }
+          console.log(result);
+          Emitter.emit('ReceiveDataFromBle', result);
         }, function(err) {
           // read failure
           console.log('read error, ', err);
@@ -79,9 +84,6 @@ class Comm {
           self.settings.writeCharacteristicID, cmd,
           function() {
             console.log('send success');
-            if (!self.isConnected) {
-              self.receiveData();
-            }
             self.isConnected = true;
           },
           function(err) {
@@ -91,6 +93,17 @@ class Comm {
           }
         );
       }
+    }
+  }
+
+  disconnect () {
+    if (ble && ble.connectedDeviceID) {
+      ble.disconnect(connectedDeviceID, function () {
+        console.log('disconnect success');
+        Emitter.emit('DisconnectSuccess', "");
+      }, function () {
+        console.log('disconnect failure');
+      });
     }
   }
 }

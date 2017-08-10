@@ -60,11 +60,11 @@
   display: flex;
   flex-direction: row;
   font-size: 28px;
-  padding: 1rem 0.5rem;
+  padding: 0.85rem 0.3rem;
   color: #333;
   list-style: none;
   overflow: hidden;
-  font-size: 2rem;
+  font-size: 1.2rem;
 }
 
 .connectList .mac_address {
@@ -75,4 +75,15 @@
   width: 6rem;
   text-align: center;
   overflow: hidden;
+}
+
+@media screen and (min-width: 768px) {
+  .connectList li {
+    font-size: 2rem;
+    padding: 1rem 0.5rem;
+  }
+
+  .connectList .distance {
+    width: 13rem;
+  }
 }
