@@ -141,7 +141,9 @@ class LinkDialog extends Component {
       ...props
     } = this.props;
 
-    this.bleDeviceList = this.state.bleDeviceList;
+    this.bleDeviceList = this.state.bleDeviceList.sort(function(a,b) {
+      return a.distance - b.distance;
+    });
 
     return (
       <ReactModal
