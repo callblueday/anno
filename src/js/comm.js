@@ -44,6 +44,20 @@ class Comm {
     return result;
   }
 
+  // ASCII only
+  stringToBytes (string) {
+     var array = new Uint8Array(string.length);
+     for (var i = 0, l = string.length; i < l; i++) {
+         array[i] = string.charCodeAt(i);
+      }
+      return array.buffer;
+  }
+
+  // ASCII only
+  bytesToString (buffer) {
+      return String.fromCharCode.apply(null, new Uint8Array(buffer));
+  }
+
   receiveData () {
     var self = this;
     if(typeof ble != 'undefined') {
@@ -53,7 +67,8 @@ class Comm {
           // read success
           let result = data;
           if(typeof data == 'object') {
-            result = self.arrayFromArrayBuffer(data).join(" ");
+            // result = self.arrayFromArrayBuffer(data).join(" ");
+            result = self.bytesToString(data);
           }
           console.log(result);
           Emitter.emit('ReceiveDataFromBle', result);
@@ -73,6 +88,7 @@ class Comm {
     var cmd = buf;
     if(cmdType != "hex") {
       console.log(cmd);
+      cmd = self.stringToBytes(cmd);
     } else {
       console.log(buf.join(", "));
       cmd = self.arrayBufferFromArray(buf);
