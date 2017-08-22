@@ -101,10 +101,11 @@ class Comm {
     var cmdType = type ? type : "ascii";
     var cmd = buf;
     if(cmdType != "hex") {
-      console.log(cmd);
       // cmd = self.stringToBytes(cmd);
-      var temp = self.stringToAsciiCode(cmd);
-      cmd = self.arrayBufferFromArray(temp);
+      var temp = self.stringToAsciiCode(cmd).concat([10]);  // 加上回车符号
+      console.log(temp);
+      // cmd = self.arrayBufferFromArray(temp);
+      // console.log(cmd);
 
     } else {
       console.log(buf.join(", "));

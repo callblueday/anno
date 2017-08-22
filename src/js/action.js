@@ -16,31 +16,31 @@ class Action {
 
   // 初始化
   start () {
-    comm.send('G2 \r\n');
+    comm.send('G2');
   }
 
   resetAllAxis () {
-    comm.send('G00 A0 B0 C0 D0 X0 Y0 Z \r\n');
+    comm.send('G00 A0 B0 C0 D0 X0 Y0 Z');
   }
 
   setRelativeMove () {
-    comm.send('G9 \r\n');
+    comm.send('G9');
   }
 
   setAbsoluteMove () {
-    comm.send('G9 \r\n');
+    comm.send('G9');
   }
 
   // 相对单轴运动
   move (axis, angle, speed) {
     speed = (speed > 2000) ? 2000 : speed;
-    var cmd = 'G01 ' + axis + angle + ' F' + speed + '\r\n';
+    var cmd = 'G01 ' + axis + angle + ' F' + speed;
     comm.send(cmd);
   }
 
   // 多轴联动控制
   moveAllAxis (as, bs, cs, ds, xs, speed) {
-    var cmd = 'G01 A' + as + ' B' + bs + ' C' + cs + ' D' + ds + ' X' + xs + ' F' + speed + '\r\n';
+    var cmd = 'G01 A' + as + ' B' + bs + ' C' + cs + ' D' + ds + ' X' + xs + ' F' + speed;
     comm.send(cmd);
   }
 
