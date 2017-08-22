@@ -8,9 +8,14 @@ class Comm {
   constructor(props) {
     this.settings = {
       isConnected: false,
-      commServiceID: 'FFE1',
-      writeCharacteristicID: 'FFE3',
-      readCharacteristicID: 'FFE2'
+      // commServiceID: 'FFE1',
+      // writeCharacteristicID: 'FFE3',
+      // readCharacteristicID: 'FFE2'
+      commServiceID: 'FFE0',
+      writeCharacteristicID: 'FFE1',
+      readCharacteristicID: 'FFE1'
+
+      // 服务 + 特征 = 功能
     };
   }
 
@@ -46,11 +51,20 @@ class Comm {
 
   // ASCII only
   stringToBytes (string) {
-     var array = new Uint8Array(string.length);
-     for (var i = 0, l = string.length; i < l; i++) {
-         array[i] = string.charCodeAt(i);
-      }
-      return array.buffer;
+    var array = new Uint8Array(string.length);
+    for (var i = 0, l = string.length; i < l; i++) {
+      array[i] = string.charCodeAt(i);
+    }
+    return array.buffer;
+  }
+
+  stringToAsciiCode (string) {
+    var result = [];
+    var list = string.split('');
+    for (var i in list) {
+        result.push(list[i].charCodeAt());
+    }
+    return result;
   }
 
   // ASCII only
@@ -88,7 +102,10 @@ class Comm {
     var cmd = buf;
     if(cmdType != "hex") {
       console.log(cmd);
-      cmd = self.stringToBytes(cmd);
+      // cmd = self.stringToBytes(cmd);
+      var temp = self.stringToAsciiCode(cmd);
+      cmd = self.arrayBufferFromArray(temp);
+
     } else {
       console.log(buf.join(", "));
       cmd = self.arrayBufferFromArray(buf);
