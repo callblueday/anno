@@ -18,10 +18,10 @@ const appList = [
     "text": "编程模式",
     "name": "codeMode"
   },
-  {
-    "text": "键盘模式",
-    "name": "keyboardMode"
-  }
+  // {
+  //   "text": "键盘模式",
+  //   "name": "keyboardMode"
+  // }
 ]
 
 class HomePage extends Component {
