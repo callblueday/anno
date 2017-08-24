@@ -108,7 +108,7 @@ class CmdMode extends Component {
             <form className="form-inline ops">
                               <div className="cmd-item">
                 <div className="form-group col-xs-9 cmd">
-                    <textarea type="text" className="form-control cmd-input">G91 G01 A10 F800</textarea>
+                    <textarea type="text" defaultValue="G91 G01 A10 F800" className="form-control cmd-input"></textarea>
                 </div>
                 <button type="button" className="btn btn-default col-xs-3 btn-send" onTouchStart={this.sendTextArea.bind(this)}>Send</button>
               </div>

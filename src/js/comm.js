@@ -104,7 +104,7 @@ class Comm {
       // cmd = self.stringToBytes(cmd);
       var temp = self.stringToAsciiCode(cmd).concat([10]);  // 加上回车符号
       console.log(temp);
-      // cmd = self.arrayBufferFromArray(temp);
+      cmd = self.arrayBufferFromArray(temp);
       // console.log(cmd);
 
     } else {
