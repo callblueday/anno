@@ -34,6 +34,8 @@ class Action {
   // 相对单轴运动
   move (axis, angle, speed) {
     speed = (speed > 2000) ? 2000 : speed;
+    angle = parseInt(angle);
+    speed = parseInt(speed);
     var cmd = 'G01 ' + axis + angle + ' F' + speed;
     comm.send(cmd);
   }

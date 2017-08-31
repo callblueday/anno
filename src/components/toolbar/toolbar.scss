@@ -3,8 +3,7 @@
 .app-toolbar {
   position: relative;
   padding: 0.8rem 1rem;
-  // position: fixed;
-  // top: 0;
+  height: $toolbar-height;
 }
 
 .ble-btn {

@@ -369,6 +369,10 @@ class CodeMode extends Component {
     return (
       <section className="box code-mode">
         <Toolbar />
+        <div className="code-topbar">
+          <button className="btn-project btn fa fa-folder-o"></button>
+          <button className="btn-save btn fa fa-save"></button>
+        </div>
         <div className="box-content code-content" id="blocklyDiv">
 
         </div>

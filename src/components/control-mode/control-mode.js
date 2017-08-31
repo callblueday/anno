@@ -100,7 +100,9 @@ class ControlMode extends Component {
     .on('move', function(evt, data) {
       // console.log(data.direction.angle + ':' + data.distance + ':' + data.force);
       let axis = nippleObj.axisMap[data.direction.angle];
-      that.sendData(data, axis);
+      setTimeout(function() {
+        that.sendData(data, axis);
+      }, 100);
     })
     .on('dir:up dir:left dir:down dir:right', function(evt, data) {
 

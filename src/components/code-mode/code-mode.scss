@@ -1,5 +1,7 @@
 @import '../../css/base';
 
+$code-topbar-padding: 5rem;
+
 .app-toolbar {
   background: #ccc;
 }
@@ -62,4 +64,24 @@
 }
 .blocklyTreeRoot div/* [role="treeitem"] */ .blocklyTreeSelected .blocklyTreeLabel {
   color: #fff;
+}
+
+/*  topbar */
+.code-topbar {
+  height: $toolbar-height;
+  position: absolute;
+  top: 0;
+  left: $code-topbar-padding;
+  right: $code-topbar-padding;
+  z-index: 99999;
+}
+
+.btn {
+  background: none;
+  outline: none!important;
+}
+
+.code-topbar .btn {
+  float: right;
+  font-size: 2.4rem;
 }
