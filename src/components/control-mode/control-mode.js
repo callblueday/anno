@@ -11,9 +11,17 @@ const settings = {
 };
 
 // 速度范围
-const SPEED_RANGE = [0, 2000];
+const SPEED_RANGE = [800, 2000];
 // 角度范围
-const ANGLE_RANGE = [0, 100];
+// const ANGLE_RANGE = [0, 80];
+const ANGLE_RANGE = {
+  "A": [0, 80],
+  "B": [0, 80],
+  "C": [0, 80],
+  "D": [0, 80],
+  "X": [0, 80],
+  "Y": [0, 80]
+}
 
 var space = 18;
 var zoomSize = window.innerWidth / 3 - space * 2;
@@ -47,30 +55,27 @@ class ControlMode extends Component {
     this.joystickR = this.createZone("zoneR");
 
     this.joystickL.axisMap = {
-      "up": "J1",
-      "down": "J1",
-      "left": "J2",
-      "right": "J2"
+      "up": "A",
+      "down": "A",
+      "left": "B",
+      "right": "B"
     };
     this.joystickC.axisMap = {
-      "up": "J3",
-      "down": "J3",
-      "left": "J4",
-      "right": "J4"
+      "up": "C",
+      "down": "C",
+      "left": "D",
+      "right": "D"
     };
     this.joystickR.axisMap = {
-      "up": "J5",
-      "down": "J5",
-      "left": "J6",
-      "right": "J6"
+      "up": "X",
+      "down": "X",
+      "left": "Y",
+      "right": "Y"
     };
 
     this.bindNipple(this.joystickL);
     this.bindNipple(this.joystickC);
     this.bindNipple(this.joystickR);
-
-    // init arm move mode.
-    action.setAbsoluteMove();
   }
 
   createZone (eleId) {
@@ -93,16 +98,32 @@ class ControlMode extends Component {
   }
 
   bindNipple (nippleObj) {
+    let count = 0;
     let that = this;
     nippleObj.on('start end', function(evt, data) {
 
     })
     .on('move', function(evt, data) {
-      // console.log(data.direction.angle + ':' + data.distance + ':' + data.force);
-      let axis = nippleObj.axisMap[data.direction.angle];
-      setTimeout(function() {
-        that.sendData(data, axis);
-      }, 100);
+      count++;
+      if(count >= 10) {
+        count = 0;
+        let r = zoomSize / 2;
+
+        let xAxis = nippleObj.axisMap[data.direction.x];
+        let yAxis = nippleObj.axisMap[data.direction.y];
+
+        let yAngle = Math.abs(Math.sin(data.angle.degree)) * (data.distance / r * ANGLE_RANGE[yAxis][1]);
+        let xAngle = Math.abs(Math.cos(data.angle.degree)) * (data.distance / r * ANGLE_RANGE[xAxis][1]);
+
+        let force = Math.min(data.force, 1);
+        let speed = SPEED_RANGE[1] * force;
+
+        action.moveTwoAxis(xAxis, xAngle, yAxis, yAngle, speed)
+
+        // let axis = nippleObj.axisMap[data.direction.angle];
+        // that.sendData(data, axis);
+      }
+
     })
     .on('dir:up dir:left dir:down dir:right', function(evt, data) {
 
@@ -114,9 +135,9 @@ class ControlMode extends Component {
 
   sendData (data, axis) {
     let r = zoomSize / 2;
-    let angle = data.distance / r * ANGLE_RANGE[1];
-    let force = Math.min(data.force, 4); // let force <= 4
-    let speed = SPEED_RANGE[1] / 4 * force;
+    let angle = data.distance / r * ANGLE_RANGE[axis][1] + 5;
+    let force = Math.min(data.force, 1); // let force <= 4
+    let speed = SPEED_RANGE[1] * force;
     action.move(axis, angle, speed);
   }
 

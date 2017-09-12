@@ -103,10 +103,8 @@ class Comm {
     if(cmdType != "hex") {
       // cmd = self.stringToBytes(cmd);
       var temp = self.stringToAsciiCode(cmd).concat([10]);  // 加上回车符号
-      console.log(temp);
+      console.log(buf);
       cmd = self.arrayBufferFromArray(temp);
-      // console.log(cmd);
-
     } else {
       console.log(buf.join(", "));
       cmd = self.arrayBufferFromArray(buf);

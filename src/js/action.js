@@ -42,7 +42,13 @@ class Action {
 
   // 多轴联动控制
   moveAllAxis (as, bs, cs, ds, xs, speed) {
-    var cmd = 'G01 A' + as + ' B' + bs + ' C' + cs + ' D' + ds + ' X' + xs + ' F' + speed;
+    var cmd = 'G01 A' + as + ' B' + bs + ' C' + cs + ' D' + ds + ' X' + xs + ' Y' + speed;
+    comm.send(cmd);
+  }
+
+  // 双轴联动
+  moveTwoAxis(ax, aAngle, bx, bAngle, speed) {
+    var cmd = 'G01 ' + ax + parseInt(aAngle) + ' ' + bx + parseInt(bAngle) + ' F' + parseInt(speed);
     comm.send(cmd);
   }
 
