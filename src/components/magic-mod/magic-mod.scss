@@ -1,0 +1,83 @@
+@import '../../css/base';
+@import './nouislider.css';
+
+.control-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.topbar h3 {
+  height: 100%;
+  display: flex;
+  flex-direction: coloumn;
+  justify-content: center;
+  align-items: center;
+  color: #2980b9;
+}
+
+.zone-wrapper {
+  flex: 1;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.zone {
+  flex-grow: 1;
+  flex-shrink: 0;
+  height: 100%;
+  position: relative;
+}
+
+.front {
+  display: flex!important;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider-wrapper {
+  flex: 2;
+  flex-grow: 2;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider-box {
+  flex: 1;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  text-align: center;
+}
+
+.slider-box .tip {
+  position: absolute;
+  bottom: -3rem;
+  left: 0;
+  right: 0;
+}
+
+.slider {
+  flex: 1;
+  flex-grow: 1;
+  margin: 0 45px;
+  display: inline-block;
+  height: 180px;
+}
+
+.slider .noUi-connect {
+  background: #c0392b;
+}
+
+#id-1-angle .noUi-connect,
+#id-2-angle .noUi-connect {
+  background: #27ae60;
+}

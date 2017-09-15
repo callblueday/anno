@@ -106,32 +106,32 @@ class CmdMode extends Component {
             </form>
 
             <form className="form-inline ops">
-                              <div className="cmd-item">
+              <div className="cmd-item">
+                <div className="form-group col-xs-9 cmd">
+                  <input type="text" className="form-control cmd-input" placeholder="G1 D1 S200" defaultValue="G1 D1 S200" />
+                </div>
+                <button type="button" className="btn btn-default col-xs-3 btn-send" onTouchStart={this.send.bind(this)}>Send</button>
+              </div>
+
+              <div className="cmd-item">
+                <div className="form-group col-xs-9 cmd">
+                  <input type="text" className="form-control cmd-input" defaultValue="G1 D1 A180 S50" />
+                </div>
+                <button type="button" className="btn btn-default col-xs-3 btn-send" onTouchStart={this.send.bind(this)}>Send</button>
+              </div>
+
+              <div className="cmd-item">
+                <div className="form-group col-xs-9 cmd">
+                  <input type="text" className="form-control cmd-input" defaultValue="G1 D1 A0 S50" />
+                </div>
+                <button type="button" className="btn btn-default col-xs-3 btn-send" onTouchStart={this.send.bind(this)}>Send</button>
+              </div>
+
+               <div className="cmd-item">
                 <div className="form-group col-xs-9 cmd">
                     <textarea type="text" defaultValue="G91 G01 A10 F800" className="form-control cmd-input"></textarea>
                 </div>
                 <button type="button" className="btn btn-default col-xs-3 btn-send" onTouchStart={this.sendTextArea.bind(this)}>Send</button>
-              </div>
-
-              <div className="cmd-item">
-                <div className="form-group col-xs-9 cmd">
-                  <input type="text" className="form-control cmd-input" placeholder="G91 G01 A10 F800" defaultValue="G91 G01 A10 F800" />
-                </div>
-                <button type="button" className="btn btn-default col-xs-3 btn-send" onTouchStart={this.send.bind(this)}>Send</button>
-              </div>
-
-              <div className="cmd-item">
-                <div className="form-group col-xs-9 cmd">
-                  <input type="text" className="form-control cmd-input" defaultValue="G91 G01 A10 F800\n" />
-                </div>
-                <button type="button" className="btn btn-default col-xs-3 btn-send" onTouchStart={this.send.bind(this)}>Send</button>
-              </div>
-
-              <div className="cmd-item">
-                <div className="form-group col-xs-9 cmd">
-                  <input type="text" className="form-control cmd-input" defaultValue="G91 G01 A10 F800\r\n" />
-                </div>
-                <button type="button" className="btn btn-default col-xs-3 btn-send" onTouchStart={this.send.bind(this)}>Send</button>
               </div>
 
               <div className="cmd-item">

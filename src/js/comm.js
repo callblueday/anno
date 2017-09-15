@@ -8,14 +8,16 @@ class Comm {
   constructor(props) {
     this.settings = {
       isConnected: false,
-      // commServiceID: 'FFE1',
-      // writeCharacteristicID: 'FFE3',
-      // readCharacteristicID: 'FFE2'
-      commServiceID: 'FFE0',
-      writeCharacteristicID: 'FFE1',
-      readCharacteristicID: 'FFE1'
 
       // 服务 + 特征 = 功能
+      commServiceID: 'FFE1',
+      writeCharacteristicID: 'FFE3',
+      readCharacteristicID: 'FFE2'
+
+      // commServiceID: 'FFE0',
+      // writeCharacteristicID: 'FFE1',
+      // readCharacteristicID: 'FFE1'
+
     };
   }
 
@@ -101,12 +103,11 @@ class Comm {
     var cmdType = type ? type : "ascii";
     var cmd = buf;
     if(cmdType != "hex") {
-      // cmd = self.stringToBytes(cmd);
+      console.log(cmd);
       var temp = self.stringToAsciiCode(cmd).concat([10]);  // 加上回车符号
-      console.log(buf);
       cmd = self.arrayBufferFromArray(temp);
     } else {
-      console.log(buf.join(", "));
+      console.log(cmd.join(", "));
       cmd = self.arrayBufferFromArray(buf);
     }
 

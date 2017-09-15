@@ -7,13 +7,17 @@ $gray-light: #999;
 
 /* 顶部工具栏高度 */
 $toolbar-height: 4.2rem;
-
 /* 左侧工具栏宽度 */
 $toolbox-width: 11rem;
 
+/* topbar */
+$topbar-padding: 5rem;
 
 * {
   user-select: none;
+}
+html, body {
+  overflow: hidden;
 }
 
 a {
@@ -61,4 +65,13 @@ a {
 .cbtn:active {
     position: relative;
     top: 3px;
+}
+
+.topbar {
+  height: $toolbar-height;
+  position: absolute;
+  top: 0;
+  left: $topbar-padding;
+  right: $topbar-padding;
+  z-index: 99999;
 }

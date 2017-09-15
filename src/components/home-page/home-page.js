@@ -7,13 +7,17 @@ import './home-page.scss';
 
 const appList = [
   {
+    "text": "超能魔块",
+    "name": "magicMod"
+  },
+  {
     "text": "调试模式",
     "name": "cmdMode"
   },
-  {
-    "text": "手柄模式",
-    "name": "controlMode"
-  },
+  // {
+  //   "text": "手柄模式",
+  //   "name": "controlMode"
+  // },
   {
     "text": "编程模式",
     "name": "codeMode"
@@ -21,7 +25,7 @@ const appList = [
   // {
   //   "text": "键盘模式",
   //   "name": "keyboardMode"
-  // }
+  // },
 ]
 
 class HomePage extends Component {

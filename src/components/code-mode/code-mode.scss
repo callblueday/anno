@@ -1,13 +1,7 @@
 @import '../../css/base';
 
-$code-topbar-padding: 5rem;
-
 .app-toolbar {
   background: #ccc;
-}
-
-#blocklyDiv {
-
 }
 
 .blocklyToolboxDiv {
@@ -67,15 +61,6 @@ $code-topbar-padding: 5rem;
 }
 
 /*  topbar */
-.code-topbar {
-  height: $toolbar-height;
-  position: absolute;
-  top: 0;
-  left: $code-topbar-padding;
-  right: $code-topbar-padding;
-  z-index: 99999;
-}
-
 .btn {
   background: none;
   outline: none!important;
