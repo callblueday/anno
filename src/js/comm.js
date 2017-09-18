@@ -10,13 +10,14 @@ class Comm {
       isConnected: false,
 
       // 服务 + 特征 = 功能
-      commServiceID: 'FFE1',
-      writeCharacteristicID: 'FFE3',
-      readCharacteristicID: 'FFE2'
+      // commServiceID: 'FFE1',
+      // writeCharacteristicID: 'FFE3',
+      // readCharacteristicID: 'FFE2'
 
-      // commServiceID: 'FFE0',
-      // writeCharacteristicID: 'FFE1',
-      // readCharacteristicID: 'FFE1'
+      // cc2541 蓝牙
+      commServiceID: 'FFE0',
+      writeCharacteristicID: 'FFE1',
+      readCharacteristicID: 'FFE1'
 
     };
   }

@@ -1,7 +1,7 @@
 @import '../../css/base';
 @import './nouislider.css';
 
-.control-content {
+.magic-mod .control-content {
   display: flex;
   flex-direction: row;
 }
@@ -15,24 +15,10 @@
   color: #2980b9;
 }
 
-.zone-wrapper {
+.magic-mod .zone-wrapper {
   flex: 1;
   flex-grow: 1;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.zone {
-  flex-grow: 1;
-  flex-shrink: 0;
-  height: 100%;
-  position: relative;
-}
-
-.front {
-  display: flex!important;
   flex-direction: row;
   justify-content: center;
   align-items: center;
