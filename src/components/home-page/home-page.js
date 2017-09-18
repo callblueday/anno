@@ -10,17 +10,21 @@ const appList = [
     "text": "调试模式",
     "name": "cmdMode"
   },
-  // {
-  //   "text": "超能魔块",
-  //   "name": "magicMod"
-  // },
+  {
+    "text": "超能魔块",
+    "name": "magicMod"
+  },
   // {
   //   "text": "飞机",
   //   "name": "huasheng"
   // },
+  // {
+  //   "text": "手柄模式",
+  //   "name": "controlMode"
+  // },
   {
-    "text": "手柄模式",
-    "name": "controlMode"
+    "text": "舵机编辑器",
+    "name": "servoEditor"
   },
   {
     "text": "编程模式",
