@@ -10,22 +10,22 @@ const appList = [
     "text": "调试模式",
     "name": "cmdMode"
   },
-  {
-    "text": "超能魔块",
-    "name": "magicMod"
-  },
-  {
-    "text": "HuaSheng",
-    "name": "huasheng"
-  },
   // {
-  //   "text": "手柄模式",
-  //   "name": "controlMode"
+  //   "text": "超能魔块",
+  //   "name": "magicMod"
   // },
   // {
-  //   "text": "编程模式",
-  //   "name": "codeMode"
+  //   "text": "飞机",
+  //   "name": "huasheng"
   // },
+  {
+    "text": "手柄模式",
+    "name": "controlMode"
+  },
+  {
+    "text": "编程模式",
+    "name": "codeMode"
+  },
   // {
   //   "text": "键盘模式",
   //   "name": "keyboardMode"

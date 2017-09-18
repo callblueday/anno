@@ -15,6 +15,9 @@ const SPEED_RANGE = {
   "2": [0, 255]
 }
 
+let myCount = 0;
+let myCountInterval = 11;
+
 var space = 18;
 var zoomSize = window.innerWidth / 3 - space * 2;
 
@@ -22,6 +25,7 @@ class MagicMod extends Component {
 
   constructor(props) {
     super(props);
+    this.interval = null;
   }
 
   componentDidMount() {
@@ -35,14 +39,15 @@ class MagicMod extends Component {
   }
 
   init () {
-    this.joystick = this.createZone("zoneL");
-    this.joystick.axisMap = {
-      "up": "1",
-      "down": "1",
-      "left": "2",
-      "right": "2"
-    };
-    this.bindNipple(this.joystick);
+    // create joystick
+    // this.joystick = this.createZone("zoneL");
+    // this.joystick.axisMap = {
+    //   "up": "1",
+    //   "down": "1",
+    //   "left": "2",
+    //   "right": "2"
+    // };
+    // this.bindNipple(this.joystick);
 
     // craete sliders
     this.createSlider("id-1-motor");
@@ -52,28 +57,67 @@ class MagicMod extends Component {
   }
 
   onSliderChange (sliderName, value) {
-    let id = parseInt(sliderName.split('-')[1]);
-    let angleSliders = ['id-1-angle', 'id-2-angle'];
-    let motorSliders = ['id-1-motor', 'id-2-motor'];
+    myCount++;
+    if(myCount >= myCountInterval) {
+      myCount = 0;
+      let id = parseInt(sliderName.split('-')[1]);
+      let angleSliders = ['id-1-angle', 'id-2-angle'];
+      let motorSliders = ['id-1-motor', 'id-2-motor'];
 
-    if (angleSliders.includes(sliderName)) {
-      action.moveAngle(id, value)
-    }
+      if (angleSliders.includes(sliderName)) {
+        action.moveAngle(id, value)
+      }
 
-    if (motorSliders.includes(sliderName)) {
-      action.moveMotor(id, value)
+      if (motorSliders.includes(sliderName)) {
+        action.moveMotor(id, value)
+      }
     }
   }
 
-  createSlider (eleId, range) {
+  onSWitchChange (e) {
+    let name = e.target.name;
+    let isOpen = e.target.checked;
+    console.log(name, isOpen);
+
+    if (name == 'switch-motor') {
+      if(isOpen) {
+        action.moveMotor(1, 200);
+        action.moveMotor(2, 200);
+      } else {
+        action.moveMotor(1, 0);
+        action.moveMotor(2, 0);
+      }
+    }
+
+    if (name == 'switch-angle') {
+      if(isOpen) {
+        this.interval = setInterval(function () {
+          action.moveAngle(1, 180);
+          action.moveAngle(2, 180);
+
+          setTimeout(function () {
+            action.moveAngle(1, 0);
+            action.moveAngle(2, 0);
+          }, 1000)
+        }, 2000);
+
+      } else {
+        clearInterval(this.interval);
+      }
+    }
+
+  }
+
+  createSlider (eleId, range, orientation) {
     let slider = document.getElementById(eleId);
     range = range ? range : [0, 255];
+    orientation = orientation ? orientation : 'vertical';
     noUiSlider.create(slider, {
       start: 0,
       connect: [true, false],
       direction: 'rtl',
       tooltips: [true],
-      orientation: "vertical",
+      orientation: orientation,
       range: {
         'min': range[0],
         'max': range[1]
@@ -87,7 +131,13 @@ class MagicMod extends Component {
       //   density: 7
       // }
     });
-    slider.noUiSlider.on('slide', this.onSliderChange.bind(this, eleId));
+
+    if (eleId.includes('switch')) {
+      slider.noUiSlider.on('update', this.onSliderUpdate.bind(this, eleId));
+    } else {
+      slider.noUiSlider.on('slide', this.onSliderChange.bind(this, eleId));
+    }
+
     return slider.noUiSlider;
   }
 
@@ -156,16 +206,34 @@ class MagicMod extends Component {
 
   render () {
     return (
-      <section className="box control-mode">
+      <section className="box control-mode magic-mod">
         <Toolbar />
         <div className="topbar">
           <h3>超能魔块</h3>
         </div>
         <div className="box-content control-content">
-          <div className="zone-wrapper">
+          {/*<div className="zone-wrapper">
             <div className="zone" id="zoneL"></div>
+          </div>*/}
+
+          <div className="wrapper together-wrapper">
+              <h4>组网控制</h4>
+              <div className="together-content">
+                  <div className="item">
+                    <span>运动演示:</span>
+                    <input type="checkbox" name="switch-motor" className="switch" id="switch-motor"
+                    onChange={this.onSWitchChange.bind(this)}/>
+                  </div>
+                  <div className="item">
+                    <span>角度演示:</span>
+                    <input type="checkbox" name="switch-angle" className="switch" id="switch-angle"
+                    onChange={this.onSWitchChange.bind(this)}/>
+                  </div>
+              </div>
           </div>
-          <div className="slider-wrapper">
+
+          <div className="wrapper slider-wrapper">
+            <h4>独立控制</h4>
             <div className="slider-box angle">
               <div className="slider" id="id-1-motor"></div>
               <div className="slider" id="id-1-angle"></div>
@@ -177,6 +245,7 @@ class MagicMod extends Component {
               <span className="tip">魔块2</span>
             </div>
           </div>
+
         </div>
         <LinkDialog />
       </section>

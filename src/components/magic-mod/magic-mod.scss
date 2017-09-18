@@ -9,7 +9,7 @@
 .topbar h3 {
   height: 100%;
   display: flex;
-  flex-direction: coloumn;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   color: #2980b9;
@@ -80,4 +80,52 @@
 #id-1-angle .noUi-connect,
 #id-2-angle .noUi-connect {
   background: #27ae60;
+}
+
+
+
+/* together wrapper */
+.together-wrapper {
+  flex: 1;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.together-content {
+  padding-top: 2rem;
+  flex: 1;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.together-content .item {
+  flex: 1;
+  flex-grow: 1;
+  margin: 2rem 1rem;
+}
+
+.switch {
+  width: 4rem;
+  margin-top: 3rem;
+}
+
+.together-content input[type=checkbox] {
+  zoom: 2!important;
+  outline: none;
+}
+
+.magic-mod .box-content {
+  position: relative;
+}
+
+.magic-mod .wrapper h4 {
+  position: absolute;
+  text-align: center;
+  top: 1rem;
 }
