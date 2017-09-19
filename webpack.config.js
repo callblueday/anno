@@ -20,6 +20,11 @@ module.exports = {
         path: path.resolve(__dirname, 'build'),
         filename: '[name].js'
     },
+    node: {
+      fs: "empty",
+      tls: "empty",
+      net: "empty"
+    },
     externals: {
         React: 'react',
         ReactDOM: 'react-dom'

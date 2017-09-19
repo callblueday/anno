@@ -1,117 +1,95 @@
 @import '../../css/base';
 @import './nouislider.css';
 
-.servo-editor .control-content {
-  display: flex;
-  flex-direction: row;
-}
+.servo-editor {
 
-.topbar h3 {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: #2980b9;
-}
+  .control-content {
+    display: flex;
+    flex-direction: row;
+  }
 
-.servo-editor .zone-wrapper {
-  flex: 1;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
+  .topbar h3 {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #2980b9;
+  }
 
-.servo-editor .slider-wrapper {
-  flex: 2;
-  flex-grow: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+  .zone-wrapper {
+    flex: 1;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
 
-.slider-box {
-  flex: 1;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  text-align: center;
-}
+  .slider-wrapper {
+    flex: 2;
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
-.slider-box .tip {
-  position: absolute;
-  bottom: -3rem;
-  left: 0;
-  right: 0;
-}
+  .slider-box {
+    flex: 1;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    text-align: center;
 
-.servo-editor .slider {
-  flex: 1;
-  flex-grow: 1;
-  margin: 0 45px;
-  display: inline-block;
-  height: 100px;
-}
+    .tip {
+      position: absolute;
+      bottom: -3rem;
+      left: 0;
+      right: 0;
+    }
+  }
 
-.slider .noUi-connect {
-  background: #c0392b;
-}
+  .slider {
+    flex: 1;
+    flex-grow: 1;
+    margin: 0 45px;
+    display: inline-block;
+    height: 100px;
 
-#id-1-angle .noUi-connect,
-#id-2-angle .noUi-connect {
-  background: #27ae60;
-}
+    .noUi-connect {
+      background: #c0392b;
+    }
 
+    .noUi-handle span {
+      z-index: 9999;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 5px;
+    }
+  }
 
+  /* opts wrapper */
+  .opts-wrapper {
+    flex: 1;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 
-/* together wrapper */
-.together-wrapper {
-  flex: 1;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
+    .item {
+      flex: 1;
+      flex-grow: 1;
+      margin: 2rem 1rem;
 
-.together-content {
-  padding-top: 2rem;
-  flex: 1;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.together-content .item {
-  flex: 1;
-  flex-grow: 1;
-  margin: 2rem 1rem;
-}
-
-.switch {
-  width: 4rem;
-  margin-top: 3rem;
-}
-
-.together-content input[type=checkbox] {
-  zoom: 2!important;
-  outline: none;
-}
-
-.servo-editor .box-content {
-  position: relative;
-}
-
-.servo-editor .wrapper h4 {
-  position: absolute;
-  text-align: center;
-  top: 1rem;
+      .btn {
+        margin: 5px 0;
+      }
+    }
+  }
 }

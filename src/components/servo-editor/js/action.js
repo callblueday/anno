@@ -1,21 +1,37 @@
 import { comm } from '../../../js/comm';
+var request = require('request');
+
 
 class Action {
   constructor(props) {
-
+    this.url = 'http://192.168.4.1/controller';
   }
 
-  moveMotor (deviceId, speed) {
-    var cmd = `G1 D${deviceId} S${speed}`;
-    comm.send(cmd);
+  doRequest (hash) {
+    console.log(hash);
+    let url = this.url + `?${hash}`;
+    request(url, function (error, response, body) {
+      console.log('statusCode:', response && response.statusCode);
+    });
   }
 
-  moveAngle (deviceId, angle, speed) {
-    speed = speed ? speed : 50;
-    var cmd = `G2 D${deviceId} A${angle} S${speed}`;
-    comm.send(cmd);
+  // 转动舵机到指定角度
+  moveToAngle (id, value) {
+    let hash = `servo=${id}&value=${value}`;
+    this.doRequest(hash);
   }
 
+  // 将舵机的初始角度存在主板的 flash 空间中
+  saveAngleToFlash (id, value) {
+    let hash = `setting=${id}&value=${value}`;
+    this.doRequest(hash);
+  }
+
+  // 让所有舵机回到初始位置
+  initServos () {
+    let hash = `pm=999`;
+    this.doRequest(hash);
+  }
 }
 
 export const action = new Action();
