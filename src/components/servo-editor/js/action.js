@@ -29,6 +29,12 @@ class Action {
 
   // 让所有舵机回到初始位置
   initServos () {
+    let hash = `pm=100`;
+    this.doRequest(hash);
+  }
+
+  // 清空EEPROM中所有存储的舵机角度值
+  clearFlash () {
     let hash = `pm=999`;
     this.doRequest(hash);
   }

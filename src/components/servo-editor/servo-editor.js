@@ -13,7 +13,17 @@ class ServoEditor extends Component {
   constructor(props) {
     super(props);
     this.interval = null;
-    this.servoIdList = [3,1,4,15,12,14,11,13];
+    this.servoIdList = [12, 14, 3, 13, 11, 15, 4, 1];
+    this.initAngles = {
+      "12": 160,
+      "14": 130,
+      "3": 134,
+      "13": 132,
+      "11": 70,
+      "15": 83,
+      "4": 173,
+      "1": 84
+    };
     window.servoAngleMaps = this.servoAngleMaps = {};
   }
 
@@ -34,7 +44,7 @@ class ServoEditor extends Component {
   craeteServoAngleMaps () {
     for (let item of this.servoIdList) {
       this.servoAngleMaps[item] = {};
-      this.servoAngleMaps[item].angle = angleRange[1] / 2;
+      this.servoAngleMaps[item].angle = this.initAngles[item];
     }
   }
 
@@ -54,11 +64,13 @@ class ServoEditor extends Component {
   }
 
   createSlider (eleId, range, orientation) {
+    let that = this;
+    let id = eleId.split('-')[1];
     let slider = document.getElementById(eleId);
     range = range ? range : angleRange;
     orientation = orientation ? orientation : 'vertical';
     noUiSlider.create(slider, {
-      start: range[1] / 2,
+      start: that.initAngles[id],
       connect: [true, false],
       direction: 'rtl',
       tooltips: [true],
@@ -88,17 +100,16 @@ class ServoEditor extends Component {
 
   initServos () {
     action.initServos();
-
     // 改变页面 UI 滑块也回到初始位置
   }
 
   setToZero () {
+    let that = this;
     let isSure = confirm("确认存储所有当前位置为初始位置？")
     if (isSure) {
-      for (let item in this.servoAngleMaps) {
-        let id = parseInt(item);
-        let value = parseInt(this.servoAngleMaps[item].angle);
-        console.log(id, value);
+      for (let i = 0; i < this.servoIdList.length; i++) {
+        let id = parseInt(that.servoIdList[i]);
+        let value = parseInt(that.servoAngleMaps[id].angle) - that.initAngles[id.toString()];
         action.saveAngleToFlash(id, value);
       }
     }
