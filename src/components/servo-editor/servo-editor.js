@@ -75,10 +75,13 @@ class ServoEditor extends Component {
       direction: 'rtl',
       tooltips: [true],
       orientation: orientation,
+      behaviour: 'tap',
       range: {
         'min': range[0],
         'max': range[1]
       },
+      animate: true,
+      animationDuration: 300,
       format: wNumb({
         decimals: 0 // 小数点的位数
       }),
@@ -128,8 +131,8 @@ class ServoEditor extends Component {
         <div className="box-content control-content">
           <div className="wrapper opts-wrapper">
             <div className="item">
-              <button type="button" className="btn btn-primary" onTouchStart={this.initServos.bind(this)}>回到初始位置</button>
-              <button type="button" className="btn btn-primary" onTouchStart={this.setToZero.bind(this)}>存储当前位置为初始值</button>
+              <button type="button" className="btn btn-primary" onClick={this.initServos.bind(this)}>回到初始位置</button>
+              <button type="button" className="btn btn-primary" onClick={this.setToZero.bind(this)}>存储当前位置为初始值</button>
             </div>
           </div>
 
