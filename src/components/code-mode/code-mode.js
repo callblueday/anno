@@ -23,12 +23,9 @@ class CodeMode extends Component {
   }
 
   componentDidMount() {
-    let that = this;
-    setTimeout(function () {
-      that.injectBlockly();
-      that.addBlocks();
-      that.addStartBlockToStage();
-    }, 1000);
+    this.injectBlockly();
+    this.addBlocks();
+    this.addStartBlockToStage();
   }
 
   componentWillUnmount() {

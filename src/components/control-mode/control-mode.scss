@@ -41,3 +41,17 @@
 .btn-selected {
   border: 2px solid #108ee9!important;
 }
+
+
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)  {
+  .zone .front,
+  .tool-bar .cbtn {
+    font-size: 3.5rem!important;
+  }
+
+  .tool-bar .cbtn {
+    padding: 0.3rem 2.5rem;
+  }
+}
