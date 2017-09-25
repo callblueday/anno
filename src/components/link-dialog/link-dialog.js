@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import './link-dialog.scss';
 import ReactModal from 'react-modal';
 import { comm } from '../../js/comm';
+import { Emitter } from '../../js/emitter';
 
 const {
     openLinkDialog,
@@ -123,6 +124,9 @@ class LinkDialog extends Component {
       ble.connectedDeviceID = self.deviceId;
       comm.receiveData();
       self.close();
+
+      Emitter.emit('connectSuccess', "");
+
       e.persist();
     }, function(){  // connect failure
       console.log('connect failure');
@@ -180,6 +184,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch) => ({
   close: (e) => {
+    Emitter.emit('connectSuccess', "");
     e && e.preventDefault();
     dispatch(closeLinkDialog())
   },

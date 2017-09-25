@@ -68,6 +68,61 @@ export default class MoveBlocks {
       action.move(axis.data, nowAngle, speed.data);
     });
 
+    BlockBuilder.makeBlock('move_all_axis', ['=ANGLE1', '=ANGLE2', '=ANGLE3','=ANGLE4','=ANGLE5','=ANGLE6', '=SPEED'], function() {
+      this.jsonInit({
+        "message0": '选择轴 J1 角度为 %1 轴 J2 角度为 %2 轴 J3 角度为 %3 轴 J4 角度为 %4 轴 J5 角度为 %5 轴 J6 角度为 %6 速度为 %7',
+        "args0": [
+          {
+            "type": "input_value",
+            "name": "ANGLE1",
+            "check": "Number"
+          },
+          {
+            "type": "input_value",
+            "name": "ANGLE2",
+            "check": "Number"
+          },
+          {
+            "type": "input_value",
+            "name": "ANGLE3",
+            "check": "Number"
+          },
+          {
+            "type": "input_value",
+            "name": "ANGLE4",
+            "check": "Number"
+          },
+          {
+            "type": "input_value",
+            "name": "ANGLE5",
+            "check": "Number"
+          },
+          {
+            "type": "input_value",
+            "name": "ANGLE6",
+            "check": "Number"
+          },
+          {
+            "type": "input_value",
+            "name": "SPEED",
+            "check": "Number"
+          }
+        ],
+        "previousStatement": true,
+        "nextStatement": true,
+        "inputsInline": false,
+        "colour": BlockBuilder.HUE.move
+      });
+    }, function(angle1,angle2,angle3,angle4,angle5,angle6,speed){
+      let a1 = self.getAngle('A', angle1.data);
+      let a2 = self.getAngle('B', angle2.data);
+      let a3 = self.getAngle('C', angle3.data);
+      let a4 = self.getAngle('D', angle4.data);
+      let a5 = self.getAngle('X', angle5.data);
+      let a6 = self.getAngle('Y', angle6.data);
+      action.moveAllAxis(a1, a2, a3, a4, a5, a6, speed.data);
+    });
+
     BlockBuilder.makeBlock('move_set_mode', ['ACTION', 'MODE'], function() {
       this.jsonInit({
         "message0": '%1 动作 %2',
@@ -102,6 +157,6 @@ export default class MoveBlocks {
       let type = mode.data + '-' + actionType.data;
       action.setMode(type);
     });
-  }
 
+  }
 }

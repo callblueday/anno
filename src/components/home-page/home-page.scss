@@ -21,6 +21,10 @@ body,
     height: 100%;
     display: flex;
     flex-direction: column;
+
+    .return-back {
+        display: none;
+    }
 }
 
 .app-info {
