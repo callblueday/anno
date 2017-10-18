@@ -11,7 +11,7 @@ class Action {
     console.log(hash);
     let url = this.url + `?${hash}`;
     request(url, function (error, response, body) {
-      console.log('statusCode:', response && response.statusCode);
+      // console.log('statusCode:', response && response.statusCode);
     });
   }
 

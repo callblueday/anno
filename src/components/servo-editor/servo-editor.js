@@ -6,8 +6,11 @@ import noUiSlider from 'nouislider';
 import wNumb from './js/wNumb';
 import './servo-editor.scss';
 
+// 角度范围
+const ANGLE_RANGE = [0, 180];
 
-const angleRange = [0, 180];
+// 两次指令间发送的时间间隔，单位毫秒
+const CMD_INTERVAL = 300;
 
 class ServoEditor extends Component {
   constructor(props) {
@@ -49,6 +52,16 @@ class ServoEditor extends Component {
   }
 
   onSliderChange (sliderName, value) {
+    let curTime = new Date().getTime();
+    if(!this.preTime) {
+      this.preTime = curTime;
+    }
+
+    // 小于预设的时间间隔，丢掉数据
+    if (curTime - this.preTime < CMD_INTERVAL) {
+      return;
+    }
+
     let id = parseInt(sliderName.split('-')[1]);
     let angle = parseInt(value[0]);
     this.servoAngleMaps[id].angle = angle;
@@ -67,7 +80,7 @@ class ServoEditor extends Component {
     let that = this;
     let id = eleId.split('-')[1];
     let slider = document.getElementById(eleId);
-    range = range ? range : angleRange;
+    range = range ? range : ANGLE_RANGE;
     orientation = orientation ? orientation : 'vertical';
     noUiSlider.create(slider, {
       start: that.initAngles[id],
