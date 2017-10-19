@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ReactModal from 'react-modal';
-import MenuItem from './menu';
+import MenuItem from './menu-item';
 import './style.scss';
 
 const {
@@ -14,19 +14,28 @@ class Menu extends Component {
     this.state = {
       projectList: [
         {
-          "name": "4588D39F3FF3FSFEG1",
-          "distance": 0.1,
+          "name": "项目1",
           "id": 1
         },
         {
-          "name": "4588D39F3FF3FSFEG2",
-          "distance": 0.2,
+          "name": "项目2",
           "id": 2
         },
         {
-          "name": "4588D39F3FF3FSFEG3",
-          "distance": 0.3,
+          "name": "项目3",
           "id": 3
+        },
+        {
+          "name": "项目4",
+          "id": 4
+        },
+        {
+          "name": "项目5",
+          "id": 5
+        },
+        {
+          "name": "项目6",
+          "id": 6
         }
       ]
     };
@@ -58,16 +67,16 @@ class Menu extends Component {
          overlayClassName="Overlay"
       >
         <div className="dialogHeader">
-            <span>project list</span>
+            <span>项目列表</span>
             <div className="headerRight">
                 <i className="fa fa-times icon-close" onTouchStart={this.close.bind(this)}></i>
             </div>
         </div>
-        <ul className="connectList">
+        <ul className="project-list">
           {
             projectList.map((item, idx) => {
               if(item) {
-                return <li key={item.name} onTouchStart={this.loadProject.bind(this, item.id)}><span className="mac_address">{item.name}</span><span className="distance">{item.distance} m</span></li>
+                return <MenuItem projectData={item} key={item.id} />
               }
             })
           }
