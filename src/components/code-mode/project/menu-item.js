@@ -19,7 +19,7 @@ class MenuItem extends Component {
 
   render() {
     return (
-
+        <li key={item.name} onTouchStart={this.loadProject.bind(this, item.id)}><span className="mac_address">{item.name}</span><span className="distance">{item.distance} m</span></li>
     );
   }
 }

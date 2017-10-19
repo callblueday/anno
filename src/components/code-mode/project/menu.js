@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import ReactModal from 'react-modal';
+import MenuItem from './menu';
 import './style.scss';
+
+const {
+    closeMenu
+} = require('../../../reducers/code');
 
 class Menu extends Component {
   constructor(props) {
@@ -34,6 +40,10 @@ class Menu extends Component {
 
   }
 
+  close () {
+    this.props.closeMenu();
+  }
+
   loadProject () {
 
   }
@@ -42,13 +52,16 @@ class Menu extends Component {
     let projectList = this.state.projectList;
     return (
       <ReactModal
-         isOpen={this.props.dialogVisible}
+         isOpen={this.props.menuVisible}
          contentLabel="onRequestClose Example"
          className="Modal"
          overlayClassName="Overlay"
       >
         <div className="dialogHeader">
-            project list
+            <span>project list</span>
+            <div className="headerRight">
+                <i className="fa fa-times icon-close" onTouchStart={this.close.bind(this)}></i>
+            </div>
         </div>
         <ul className="connectList">
           {
@@ -64,4 +77,20 @@ class Menu extends Component {
   }
 }
 
-export default Menu;
+const mapStateToProps = state => ({
+  menuVisible: state.code.menuVisible
+});
+
+
+const mapDispatchToProps = (dispatch) => ({
+  closeMenu: (e) => {
+    e && e.preventDefault();
+    dispatch(closeMenu())
+  }
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Menu);
+
