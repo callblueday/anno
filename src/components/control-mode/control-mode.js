@@ -4,6 +4,7 @@ import Toolbar from '../toolbar/toolbar';
 import nipplejs from 'nipplejs';
 import LinkDialog from '../link-dialog/link-dialog';
 import { action } from '../../js/action';
+import { Emitter } from '../../js/emitter';
 
 const settings = {
     multiple: 2,
@@ -12,8 +13,6 @@ const settings = {
 
 // 速度范围
 const SPEED_RANGE = [800, 2000];
-// 角度范围
-// const ANGLE_RANGE = [0, 80];
 const ANGLE_RANGE = {
   "A": [0, 80],
   "B": [0, 80],
@@ -21,7 +20,15 @@ const ANGLE_RANGE = {
   "D": [0, 80],
   "X": [0, 80],
   "Y": [0, 80]
-}
+};
+
+// 每次运动的固定位移
+const SHIFT_DISTANCE = 5;
+// 允许的最小运动范围半径
+const MIN_MOVE_RADIUS = 30;
+
+// 两次指令间发送的时间间隔，单位毫秒
+const CMD_INTERVAL = 100;
 
 var space = 18;
 var zoomSize = window.innerWidth / 3 - space * 2;
@@ -36,14 +43,26 @@ class ControlMode extends Component {
       "jiaqu": false,
       "xiqu": false,
       "hanjie": false
-    }
+    };
+
+    this.activeAxis = [];
   }
 
   componentDidMount() {
     this.init();
+
+    Emitter.on('connectSuccess', function() {
+      action.enterJoystickMode();
+      action.setRelativeMove();
+    });
+
+    action.enterJoystickMode();
+    action.setRelativeMove();
   }
 
   componentWillUnmount() {
+    action.exitJoystickMode();
+    action.setAbsoluteMove();
     // this.joystickL && this.joystickL.destroy();
     // this.joystickC && this.joystickC.destroy();
     // this.joystickR && this.joystickR.destroy();
@@ -55,22 +74,22 @@ class ControlMode extends Component {
     this.joystickR = this.createZone("zoneR");
 
     this.joystickL.axisMap = {
-      "up": "A",
-      "down": "A",
-      "left": "B",
-      "right": "B"
+      "left": "A-",
+      "right": "A",
+      "up": "B",
+      "down": "B-",
     };
     this.joystickC.axisMap = {
-      "up": "C",
-      "down": "C",
-      "left": "D",
-      "right": "D"
+      "left": "C-",
+      "right": "C",
+      "up": "D",
+      "down": "D-",
     };
     this.joystickR.axisMap = {
-      "up": "X",
-      "down": "X",
-      "left": "Y",
-      "right": "Y"
+      "left": "X-",
+      "right": "X",
+      "up": "Y",
+      "down": "Y-",
     };
 
     this.bindNipple(this.joystickL);
@@ -100,37 +119,81 @@ class ControlMode extends Component {
   bindNipple (nippleObj) {
     let count = 0;
     let that = this;
-    nippleObj.on('start end', function(evt, data) {
+    nippleObj.on('start', function(evt, data) {
 
     })
     .on('move', function(evt, data) {
-      count++;
-      if(count >= 10) {
-        count = 0;
-        let r = zoomSize / 2;
-
-        let xAxis = nippleObj.axisMap[data.direction.x];
-        let yAxis = nippleObj.axisMap[data.direction.y];
-
-        let yAngle = Math.abs(Math.sin(data.angle.degree)) * (data.distance / r * ANGLE_RANGE[yAxis][1]);
-        let xAngle = Math.abs(Math.cos(data.angle.degree)) * (data.distance / r * ANGLE_RANGE[xAxis][1]);
-
-        let force = Math.min(data.force, 1);
-        let speed = SPEED_RANGE[1] * force;
-
-        action.moveTwoAxis(xAxis, xAngle, yAxis, yAngle, speed)
-
-        // let axis = nippleObj.axisMap[data.direction.angle];
-        // that.sendData(data, axis);
+      let distance = data.distance;
+      if (distance < zoomSize * 0.3) {
+        return;
       }
+
+      let force = Math.min(data.force, 1);
+      let speed = parseInt(SPEED_RANGE[1] * force);
+
+      let xAxis = nippleObj.axisMap[data.direction.x];
+      let yAxis = nippleObj.axisMap[data.direction.y];
+
+      nippleObj.xAxis = xAxis;
+      nippleObj.yAxis = yAxis;
+
+      let axis = nippleObj.axisMap[data.direction.angle];
+      nippleObj.axis = axis;
+
+      that.refreshActiveAxis(nippleObj.xAxis, false);
+      that.refreshActiveAxis(nippleObj.yAxis, false);
+      that.refreshActiveAxis(axis, true);
+      that.doMove(speed);
 
     })
     .on('dir:up dir:left dir:down dir:right', function(evt, data) {
-
     })
     .on('pressure', function(evt, data) {
 
+    })
+    .on('end', function (evt, data) {
+      console.log('end');
+      that.refreshActiveAxis(nippleObj.xAxis, false);
+      that.refreshActiveAxis(nippleObj.yAxis, false);
+
+      that.refreshActiveAxis(nippleObj.axis, false);
     });
+  }
+
+  refreshActiveAxis (axisName, isActive) {
+    let newAxis = [];
+    // remove exist
+    for (let axis of this.activeAxis) {
+      if (axis.split('-')[0] !== axisName.split('-')[0]) {
+        newAxis.push(axis)
+      }
+    }
+    if (isActive) {
+      // add new
+      newAxis.push(axisName);
+    }
+    this.activeAxis = newAxis;
+  }
+
+  doMove (speed) {
+    let curTime = new Date().getTime();
+    if(!this.preTime) {
+      this.preTime = curTime;
+    }
+
+    // 小于预设的时间间隔，丢掉数据
+    if (curTime - this.preTime < CMD_INTERVAL) {
+      return;
+    }
+
+    this.preTime = curTime;
+
+    let cmd = 'G01 ';
+    for (let axis of this.activeAxis) {
+      cmd += (axis + SHIFT_DISTANCE + ' ');
+    }
+    cmd += ('F2000');
+    action.moveFree(cmd);
   }
 
   sendData (data, axis) {

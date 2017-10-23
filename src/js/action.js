@@ -23,12 +23,23 @@ class Action {
     comm.send('G00 A0 B0 C0 D0 X0 Y0 Z');
   }
 
+  // 进入遥感模式
+  enterJoystickMode () {
+    comm.send('M93');
+  }
+
+  exitJoystickMode () {
+    comm.send('M94');
+  }
+
+  // 退出遥感模式
+
   setRelativeMove () {
-    comm.send('G9');
+    comm.send('G91');
   }
 
   setAbsoluteMove () {
-    comm.send('G9');
+    comm.send('G90');
   }
 
   // 相对单轴运动
@@ -41,9 +52,13 @@ class Action {
   }
 
   // 多轴联动控制
-  moveAllAxis (as, bs, cs, ds, xs, speed) {
-    var cmd = 'G01 A' + as + ' B' + bs + ' C' + cs + ' D' + ds + ' X' + xs + ' Y' + speed;
+  moveAllAxis (as, bs, cs, ds, xs, ys, speed) {
+    var cmd = 'G01 A' + as + ' B' + bs + ' C' + cs + ' D' + ds + ' X' + xs + ' Y' + ys + ' F' + speed;
     comm.send(cmd);
+  }
+
+  moveFree (cmdStr) {
+    comm.send(cmdStr);
   }
 
   // 双轴联动

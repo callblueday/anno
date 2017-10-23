@@ -3,41 +3,56 @@
 .control-content {
   display: flex;
   flex-direction: column;
+
+  .tool-bar {
+    background: #ddd;
+    height: 90px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .zone-wrapper {
+    flex: 1;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .zone {
+    flex-grow: 1;
+    flex-shrink: 0;
+    height: 100%;
+    position: relative;
+  }
+
+  .front {
+    display: flex!important;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btn-selected {
+    border: 2px solid #108ee9!important;
+  }
 }
 
-.tool-bar {
-  background: #ddd;
-  height: 90px;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
 
-.zone-wrapper {
-  flex: 1;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
 
-.zone {
-  flex-grow: 1;
-  flex-shrink: 0;
-  height: 100%;
-  position: relative;
-}
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)  {
+  .zone .front,
+  .tool-bar .cbtn {
+    font-size: 3.5rem!important;
+  }
 
-.front {
-  display: flex!important;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.btn-selected {
-  border: 2px solid #108ee9!important;
+  .tool-bar .cbtn {
+    padding: 0.3rem 2.5rem;
+  }
 }

@@ -22,7 +22,7 @@ render(
   <Provider store={ store }>
     <Router>
       <Switch>
-        <Route path="/" exact component={ServoEditor} />
+        <Route path="/" exact component={HomePage} />
         <Route path="/homePage" exact component={HomePage} />
         <Route path="/cmdMode" exact component={CmdMode} />
         <Route path="/codeMode" exact component={CodeMode} />

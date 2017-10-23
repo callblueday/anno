@@ -2,7 +2,7 @@ const MENU_SHOW = 'menu_show';
 const MENU_HIDE = 'menu_hide';
 
 const initialState = {
-  "menuVisible": true,
+  "menuVisible": false,
   "projectChanged": false,
   "projectId": false
 };

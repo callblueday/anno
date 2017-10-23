@@ -22,7 +22,7 @@ class Toolbar extends React.Component {
       } = this.props;
       return (
           <section className="app-toolbar">
-            <Link to="/">
+            <Link to="/" className="return-back">
               <FontAwesome name='arrow-left' size='2x' style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)' }} />
             </Link>
 

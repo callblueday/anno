@@ -4,6 +4,10 @@
   background: #ccc;
 }
 
+.code-content {
+  // height: 100%;
+}
+
 .blocklyToolboxDiv {
   border-right: none !important;
   overflow: visible!important;
@@ -12,6 +16,7 @@
 
 .blocklyTreeRoot {
   height: 100%;
+  padding: 0;
 }
 
 .blocklyTreeRoot div[role="group"]:nth-child(2) {
@@ -66,4 +71,26 @@
   outline: none!important;
   float: right;
   font-size: 2.4rem;
+}
+
+
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)  {
+  .blocklyText,
+  .blocklyTreeRoot div .blocklyTreeRow .blocklyTreeLabel {
+    font-size: 2rem!important;
+  }
+  .code-topbar {
+    padding-right: 2rem!important;
+    .btn {
+      font-size: 4rem!important;
+    }
+  }
+
+  .run-btn {
+    font-size: 2rem;
+    padding: 1.5rem 4rem;
+    margin-right: 3rem;
+  }
 }
