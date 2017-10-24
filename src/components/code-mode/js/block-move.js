@@ -158,5 +158,48 @@ export default class MoveBlocks {
       action.setMode(type);
     });
 
+    BlockBuilder.makeBlock('move_forward', [], function() {
+      this.jsonInit({
+        "message0": '向前运动',
+        "args0": [],
+        "previousStatement": true,
+        "nextStatement": true,
+        "inputsInline": true,
+        "colour": BlockBuilder.HUE.move
+      });
+    }, function(){
+    });
+
+    BlockBuilder.makeBlock('move_forward_with_time', ['SECOND'], function() {
+      this.jsonInit({
+        "message0": '向前运动 %1 秒',
+        "args0": [
+          {
+            "type": "input_value",
+            "name": "SECOND",
+            "check": ['Number']
+          }
+        ],
+        "previousStatement": true,
+        "nextStatement": true,
+        "inputsInline": true,
+        "colour": BlockBuilder.HUE.move
+      });
+    }, function(second){
+      let s = second.data;
+    });
+
+    BlockBuilder.makeBlock('move_stop', [], function() {
+      this.jsonInit({
+        "message0": '停止运动',
+        "args0": [],
+        "previousStatement": true,
+        "nextStatement": true,
+        "inputsInline": true,
+        "colour": BlockBuilder.HUE.move
+      });
+    }, function(){
+    });
+
   }
 }
