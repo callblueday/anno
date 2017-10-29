@@ -7,7 +7,7 @@ import wNumb from './js/wNumb';
 import './servo-editor.scss';
 
 // 角度范围
-const ANGLE_RANGE = [0, 180];
+const ANGLE_RANGE = [1, 180];
 
 // 两次指令间发送的时间间隔，单位毫秒
 const CMD_INTERVAL = 300;
@@ -16,17 +16,18 @@ class ServoEditor extends Component {
   constructor(props) {
     super(props);
     this.interval = null;
-    this.servoIdList = [12, 14, 3, 13, 11, 15, 4, 1];
+    this.servoIdList = [0, 1, 2, 3, 4, 5, 6, 7];
     this.initAngles = {
-      "12": 160,
-      "14": 130,
-      "3": 134,
-      "13": 132,
-      "11": 70,
-      "15": 83,
-      "4": 173,
-      "1": 84
+      "0": 160,
+      "1": 130,
+      "2": 134,
+      "3": 132,
+      "4": 70,
+      "5": 83,
+      "6": 173,
+      "7": 84
     };
+
     window.servoAngleMaps = this.servoAngleMaps = {};
   }
 
@@ -69,10 +70,9 @@ class ServoEditor extends Component {
   }
 
   createSliderList (sliderIdList) {
-    let range = [0, 180];
     for (let item of sliderIdList) {
       let eleId = 'id-' + item;
-      this.createSlider(eleId, range);
+      this.createSlider(eleId, ANGLE_RANGE);
     }
   }
 
@@ -154,7 +154,7 @@ class ServoEditor extends Component {
               {
                 servoGroup1.map((item, idx) => {
                   let id = 'id-' + item;
-                  if(item) {
+                  if(item || item === 0) {
                     return <div key={id} className="slider" id={id}></div>
                   }
                 })
@@ -164,7 +164,7 @@ class ServoEditor extends Component {
               {
                 servoGroup2.map((item, idx) => {
                   let id2 = 'id-' + item;
-                  if(item) {
+                  if(item || item === 0) {
                     return <div key={id2} className="slider" id={id2}></div>
                   }
                 })

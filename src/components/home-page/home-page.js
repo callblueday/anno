@@ -23,6 +23,10 @@ const appList = [
   //   "name": "controlMode"
   // },
   {
+    "text": "舵机控制",
+    "name": "servoControl"
+  },
+  {
     "text": "舵机编辑器",
     "name": "servoEditor"
   },

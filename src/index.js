@@ -14,6 +14,7 @@ import KeyboardMode from './components/keyboard-mode/keyboard-mode';
 import MagicMod from './components/magic-mod/magic-mod';
 import Huasheng from './components/huasheng/huasheng';
 import ServoEditor from './components/servo-editor/servo-editor';
+import ServoControl from './components/servo-control';
 import App from './js/app';
 
 const store = createStore(reducers);
@@ -31,6 +32,7 @@ render(
         <Route path="/magicMod" exact component={MagicMod} />
         <Route path="/huasheng" exact component={Huasheng} />
         <Route path="/servoEditor" exact component={ServoEditor} />
+        <Route path="/servoControl" exact component={ServoControl} />
       </Switch>
     </Router>
   </Provider>,

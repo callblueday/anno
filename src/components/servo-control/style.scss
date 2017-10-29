@@ -1,0 +1,53 @@
+@import '../../css/base';
+
+.servo-control {
+
+  .topbar h3 {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #2980b9;
+  }
+
+
+  .servo-control {
+    padding: 2rem;
+    display: flex;
+    flex-direction: row;
+
+    .joystick {
+      flex: 1;
+      padding-right: 2rem;
+
+      table {
+        width: 100%;
+
+        tr {
+          text-align: center;
+        }
+        td {
+          width: 33.33333%;
+          padding: 0.2rem;
+
+          button {
+            width: 98%;
+            padding: 1rem 0.8rem;
+          }
+        }
+      }
+    }
+
+    .other-opts {
+      flex: 1;
+      padding-left: 2rem;
+      border-left: 1px solid #ddd;
+
+      button {
+        margin: 0.4rem;
+        padding: 0.6rem 1rem;
+      }
+    }
+  }
+}
