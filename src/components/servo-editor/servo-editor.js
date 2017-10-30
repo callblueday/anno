@@ -18,14 +18,14 @@ class ServoEditor extends Component {
     this.interval = null;
     this.servoIdList = [0, 1, 2, 3, 4, 5, 6, 7];
     this.initAngles = {
-      "0": 160,
-      "1": 130,
-      "2": 134,
-      "3": 132,
-      "4": 70,
-      "5": 83,
-      "6": 173,
-      "7": 84
+      "0": 90,
+      "1": 90,
+      "2": 90,
+      "3": 90,
+      "4": 90,
+      "5": 90,
+      "6": 90,
+      "7": 90
     };
 
     window.servoAngleMaps = this.servoAngleMaps = {};
@@ -145,7 +145,7 @@ class ServoEditor extends Component {
           <div className="wrapper opts-wrapper">
             <div className="item">
               <button type="button" className="btn btn-primary" onClick={this.initServos.bind(this)}>回到初始位置</button>
-              <button type="button" className="btn btn-primary" onClick={this.setToZero.bind(this)}>存储当前位置为初始值</button>
+              {/*<button type="button" className="btn btn-primary" onClick={this.setToZero.bind(this)}>存储当前位置为初始值</button>*/}
             </div>
           </div>
 

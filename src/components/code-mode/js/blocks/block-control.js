@@ -1,4 +1,4 @@
-import BlockBuilder from './block-builder';
+import BlockBuilder from '../block-builder';
 
 export default class ControlBlocks {
   constructor() {

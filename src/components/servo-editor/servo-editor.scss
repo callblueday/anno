@@ -27,8 +27,8 @@
   }
 
   .slider-wrapper {
-    flex: 2;
-    flex-grow: 2;
+    flex: 3;
+    flex-grow: 3;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -92,4 +92,9 @@
       }
     }
   }
+}
+
+.noUi-handle::before,
+.noUi-handle::after {
+  display: none;
 }

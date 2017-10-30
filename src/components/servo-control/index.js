@@ -22,7 +22,7 @@ class ServoControl extends Component {
   }
 
   move (type) {
-    console.log(type);
+    action.move(type);
   }
 
   render () {
@@ -36,30 +36,30 @@ class ServoControl extends Component {
             <div className="joystick">
               <table>
                 <tr>
-                  <td></td>
-                  <td><button type="button" className="btn btn-success" onClick={this.move.bind(this, 'forward')}>向前</button></td>
-                  <td></td>
+                  <td><button type="button" className="btn btn-success green" onClick={this.move.bind(this, '7')}>左转</button></td>
+                  <td><button type="button" className="btn btn-success blue" onClick={this.move.bind(this, '3')}>向前</button></td>
+                  <td><button type="button" className="btn btn-success green" onClick={this.move.bind(this, '6')}>右转</button></td>
                 </tr>
                 <tr>
-                  <td><button type="button" className="btn btn-success" onClick={this.move.bind(this, 'left')}>向左</button></td>
-                  <td><button type="button" className="btn btn-danger" onClick={this.move.bind(this, 'begin')}>初始位置</button></td>
-                  <td><button type="button" className="btn btn-success" onClick={this.move.bind(this, 'right')}>向右</button></td>
+                  <td><button type="button" className="btn btn-success blue" onClick={this.move.bind(this, '5')}>向左</button></td>
+                  <td><button type="button" className="btn btn-success blue" onClick={this.move.bind(this, '2')}>向后</button></td>
+                  <td><button type="button" className="btn btn-success blue" onClick={this.move.bind(this, '4')}>向右</button></td>
                 </tr>
                 <tr>
                   <td></td>
-                  <td><button type="button" className="btn btn-success" onClick={this.move.bind(this, 'backward')}>向后</button></td>
+                  <td></td>
                   <td></td>
                 </tr>
               </table>
             </div>
 
             <div className="other-opts">
-              <button type="button" className="btn btn-primary" onClick={this.move.bind(this, 'shrink')}>启动状态</button>
-              <button type="button" className="btn btn-primary" onClick={this.move.bind(this, 'say-hello')}>打招呼</button>
-              <button type="button" className="btn btn-primary" onClick={this.move.bind(this, 'push-up')}>俯卧撑</button>
-              <button type="button" className="btn btn-primary" onClick={this.move.bind(this, 'look-around')}>左右张望</button> <br />
-              <button type="button" className="btn btn-primary" onClick={this.move.bind(this, 'fall')}>趴下</button>
-              <button type="button" className="btn btn-primary" onClick={this.move.bind(this, 'stand')}>站立</button>
+              <button type="button" className="btn btn-primary orange" onClick={this.move.bind(this, '1')}>启动状态</button>
+              <button type="button" className="btn btn-primary orange" onClick={this.move.bind(this, '9')}>打招呼</button>
+              <button type="button" className="btn btn-primary yellow" onClick={this.move.bind(this, '11')}>俯卧撑</button>
+              <button type="button" className="btn btn-primary yellow" onClick={this.move.bind(this, '8')}>站立</button> <br />
+              <button type="button" className="btn btn-primary lightred" onClick={this.move.bind(this, '10')}>战斗模式</button>
+              <button type="button" className="btn btn-primary lightred" onClick={this.move.bind(this, '12')}>休息</button>
             </div>
 
         </div>

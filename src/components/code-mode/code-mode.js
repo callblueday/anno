@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import BlockMove from './js/block-move';
-import StartBlocks from './js/block-start';
-import ControlBlocks from './js/block-control';
+import BlockMove from './js/blocks/block-move';
+import StartBlocks from './js/blocks/block-start';
+import ControlBlocks from './js/blocks/block-control';
 
 import Toolbar from '../toolbar/toolbar';
 import RunButton from './run-button/run-button';
 import LinkDialog from '../link-dialog/link-dialog';
 import Menu from './project/menu';
+import storage from './js/storage';
 import './code-mode.scss';
 
 const {
@@ -50,8 +51,8 @@ class CodeMode extends Component {
     this.props.openMenu();
   }
 
-  saveProject (id) {
-
+  saveProject () {
+     storage.add('hello');
   }
 
   renderXml () {
@@ -79,10 +80,10 @@ class CodeMode extends Component {
     return (
       <section className="box code-mode">
         <Toolbar />
-        <div className="topbar code-topbar">
+        {/*<div className="topbar code-topbar">
           <button className="btn-project btn fa fa-folder-o" onTouchStart={this.openProjectMenu.bind(this)}></button>
           <button className="btn-save btn fa fa-save" onTouchStart={this.saveProject.bind(this)}></button>
-        </div>
+        </div>*/}
         <div className="box-content code-content" id="blocklyDiv">
 
         </div>

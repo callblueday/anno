@@ -95,6 +95,10 @@ module.exports = {
             {
                 from: 'src/components/keyboard-mode/js/modernizr.custom.js',
                 to: 'static/js'
+            },
+            {
+                from: 'src/components/code-mode/js/blockly-extend/constants.js',
+                to: 'static/js'
             }
         ])
     ].concat(process.env.NODE_ENV === 'production' ? [

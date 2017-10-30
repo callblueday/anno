@@ -1,5 +1,5 @@
-import BlockBuilder from './block-builder';
-import { action } from '../../../js/action';
+import BlockBuilder from '../block-builder';
+import { action } from '../../../servo-editor/js/action';
 
 const angleRange = {
   "A": [-180, 180],
@@ -160,7 +160,7 @@ export default class MoveBlocks {
 
     BlockBuilder.makeBlock('move_forward', [], function() {
       this.jsonInit({
-        "message0": '向前运动',
+        "message0": '前进',
         "args0": [],
         "previousStatement": true,
         "nextStatement": true,
@@ -168,30 +168,13 @@ export default class MoveBlocks {
         "colour": BlockBuilder.HUE.move
       });
     }, function(){
+        action.move(3);
+        this.wait(3.4);
     });
 
-    BlockBuilder.makeBlock('move_forward_with_time', ['SECOND'], function() {
+    BlockBuilder.makeBlock('move_backward', [], function() {
       this.jsonInit({
-        "message0": '向前运动 %1 秒',
-        "args0": [
-          {
-            "type": "input_value",
-            "name": "SECOND",
-            "check": ['Number']
-          }
-        ],
-        "previousStatement": true,
-        "nextStatement": true,
-        "inputsInline": true,
-        "colour": BlockBuilder.HUE.move
-      });
-    }, function(second){
-      let s = second.data;
-    });
-
-    BlockBuilder.makeBlock('move_stop', [], function() {
-      this.jsonInit({
-        "message0": '停止运动',
+        "message0": '后退',
         "args0": [],
         "previousStatement": true,
         "nextStatement": true,
@@ -199,7 +182,148 @@ export default class MoveBlocks {
         "colour": BlockBuilder.HUE.move
       });
     }, function(){
+        action.move(2);
+        this.wait(3.4);
     });
 
+    BlockBuilder.makeBlock('move_left', [], function() {
+      this.jsonInit({
+        "message0": '左移动',
+        "args0": [],
+        "previousStatement": true,
+        "nextStatement": true,
+        "inputsInline": true,
+        "colour": BlockBuilder.HUE.move
+      });
+    }, function(){
+        action.move(5);
+        this.wait(3.4);
+    });
+
+    BlockBuilder.makeBlock('move_right', [], function() {
+      this.jsonInit({
+        "message0": '右移动',
+        "args0": [],
+        "previousStatement": true,
+        "nextStatement": true,
+        "inputsInline": true,
+        "colour": BlockBuilder.HUE.move
+      });
+    }, function(){
+        action.move(6);
+        this.wait(3.4);
+    });
+
+    BlockBuilder.makeBlock('move_turn_left', [], function() {
+      this.jsonInit({
+        "message0": '左转向',
+        "args0": [],
+        "previousStatement": true,
+        "nextStatement": true,
+        "inputsInline": true,
+        "colour": BlockBuilder.HUE.move
+      });
+    }, function(){
+        action.move(7);
+        this.wait(1.2);
+    });
+
+    BlockBuilder.makeBlock('move_turn_right', [], function() {
+      this.jsonInit({
+        "message0": '右转向',
+        "args0": [],
+        "previousStatement": true,
+        "nextStatement": true,
+        "inputsInline": true,
+        "colour": BlockBuilder.HUE.move
+      });
+    }, function(){
+        action.move(6);
+        this.wait(1.2);
+    });
+
+    BlockBuilder.makeBlock('move_stand_by', [], function() {
+      this.jsonInit({
+        "message0": '启动待机',
+        "args0": [],
+        "previousStatement": true,
+        "nextStatement": true,
+        "inputsInline": true,
+        "colour": BlockBuilder.HUE.move
+      });
+    }, function(){
+        action.move(1);
+        this.wait(1);
+    });
+
+    BlockBuilder.makeBlock('move_say_hi', [], function() {
+      this.jsonInit({
+        "message0": '打招呼',
+        "args0": [],
+        "previousStatement": true,
+        "nextStatement": true,
+        "inputsInline": true,
+        "colour": BlockBuilder.HUE.move
+      });
+    }, function(){
+        action.move(5);
+        this.wait(3.3);
+    });
+
+    BlockBuilder.makeBlock('move_push_up', [], function() {
+      this.jsonInit({
+        "message0": '俯卧撑',
+        "args0": [],
+        "previousStatement": true,
+        "nextStatement": true,
+        "inputsInline": true,
+        "colour": BlockBuilder.HUE.move
+      });
+    }, function(){
+        action.move(11);
+        this.wait(9.6);
+    });
+
+    BlockBuilder.makeBlock('move_lie', [], function() {
+      this.jsonInit({
+        "message0": '站立',
+        "args0": [],
+        "previousStatement": true,
+        "nextStatement": true,
+        "inputsInline": true,
+        "colour": BlockBuilder.HUE.move
+      });
+    }, function(){
+        action.move(8);
+        this.wait(0.5);
+    });
+
+    BlockBuilder.makeBlock('move_fight', [], function() {
+      this.jsonInit({
+        "message0": '战斗模式',
+        "args0": [],
+        "previousStatement": true,
+        "nextStatement": true,
+        "inputsInline": true,
+        "colour": BlockBuilder.HUE.move
+      });
+    }, function(){
+      action.move(10);
+      this.wait(5.5);
+    });
+
+    BlockBuilder.makeBlock('move_sleep', [], function() {
+      this.jsonInit({
+        "message0": '休息',
+        "args0": [],
+        "previousStatement": true,
+        "nextStatement": true,
+        "inputsInline": true,
+        "colour": BlockBuilder.HUE.move
+      });
+    }, function(){
+        action.move(12);
+        this.wait(1);
+    });
   }
 }

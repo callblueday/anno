@@ -1,17 +1,13 @@
 @import '../../css/base';
 
-.app-toolbar {
-  background: #ccc;
-}
-
-.code-content {
-  // height: 100%;
-}
-
 .blocklyToolboxDiv {
   border-right: none !important;
   overflow: visible!important;
   top: 0!important;
+}
+
+.blocklyMainBackground {
+  // fill: #edf9ff!important;
 }
 
 .blocklyTreeRoot {
@@ -43,8 +39,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding-right: 0.3rem!important;
-    padding-left: 0.3rem!important;
+    padding: 0 1rem!important;
 }
 
 .blocklyTreeRoot div/* [role="treeitem"] */ .blocklyTreeRow .blocklyTreeIcon {

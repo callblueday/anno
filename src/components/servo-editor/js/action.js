@@ -15,6 +15,11 @@ class Action {
     });
   }
 
+  move (type) {
+    let hash = `pm=${type}`;
+    this.doRequest(hash);
+  }
+
   // 转动舵机到指定角度
   moveToAngle (id, value) {
     let hash = `servo=${id}&value=${value}`;
