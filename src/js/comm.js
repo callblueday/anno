@@ -9,16 +9,15 @@ class Comm {
     this.settings = {
       isConnected: false,
 
-      // 服务 + 特征 = 功能
+      // 服务 + 特征 = 功能 (mbot)
       // commServiceID: 'FFE1',
       // writeCharacteristicID: 'FFE3',
       // readCharacteristicID: 'FFE2'
 
-      // cc2541 蓝牙
+      // cc2541 、cc2540蓝牙：(anno)
       commServiceID: 'FFE0',
       writeCharacteristicID: 'FFE1',
       readCharacteristicID: 'FFE1'
-
     };
   }
 

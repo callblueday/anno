@@ -6,10 +6,10 @@ import LinkDialog from '../link-dialog/link-dialog';
 import './home-page.scss';
 
 const appList = [
-  // {
-  //   "text": "调试模式",
-  //   "name": "cmdMode"
-  // },
+  {
+    "text": "调试模式",
+    "name": "cmdMode"
+  },
   // {
   //   "text": "超能魔块",
   //   "name": "magicMod"
