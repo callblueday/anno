@@ -15,6 +15,10 @@ class Action {
     });
   }
 
+  doBleRequest (cmd) {
+    comm.send(cmd);
+  }
+
   move (type) {
     let hash = `pm=${type}`;
     this.doRequest(hash);
@@ -42,6 +46,16 @@ class Action {
   clearFlash () {
     let hash = `pm=999`;
     this.doRequest(hash);
+  }
+
+  /**
+   * --------------
+   * bluetooth
+   * --------------
+   */
+
+  setLed (type) {
+    this.doBleRequest(type);
   }
 }
 

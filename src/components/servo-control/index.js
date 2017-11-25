@@ -25,6 +25,10 @@ class ServoControl extends Component {
     action.move(type);
   }
 
+  setLed (type) {
+    action.setLed(type);
+  }
+
   render () {
     return (
       <section className="box control-mode servo-control">
@@ -35,6 +39,11 @@ class ServoControl extends Component {
         <div className="box-content control-content servo-control">
             <div className="joystick">
               <table>
+                <tr>
+                  <td><button type="button" className="btn btn-success" onClick={this.setLed.bind(this, 'a')}>蓝灯</button></td>
+                  <td><button type="button" className="btn btn-success" onClick={this.setLed.bind(this, 'b')}>绿灯</button></td>
+                  <td><button type="button" className="btn btn-success" onClick={this.setLed.bind(this, 'c')}>关灯</button></td>
+                </tr>
                 <tr>
                   <td><button type="button" className="btn btn-success green" onClick={this.move.bind(this, '7')}>左转</button></td>
                   <td><button type="button" className="btn btn-success blue" onClick={this.move.bind(this, '3')}>向前</button></td>

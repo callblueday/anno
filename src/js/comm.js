@@ -14,10 +14,15 @@ class Comm {
       // writeCharacteristicID: 'FFE3',
       // readCharacteristicID: 'FFE2'
 
-      // cc2541 、cc2540蓝牙：(anno)
-      commServiceID: 'FFE0',
-      writeCharacteristicID: 'FFE1',
-      readCharacteristicID: 'FFE1'
+      // cc2541：(anno)
+      // commServiceID: 'FFE0',
+      // writeCharacteristicID: 'FFE1',
+      // readCharacteristicID: 'FFE1'
+
+      // cc2540
+      commServiceID: 'FFF0',
+      writeCharacteristicID: 'FFF1',
+      readCharacteristicID: 'FFF4'
     };
   }
 
