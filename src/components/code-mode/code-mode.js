@@ -37,8 +37,7 @@ class CodeMode extends Component {
     var xmlData = `
       <xml><block type="when_start" id="@fiknb:[[;iHSVP%1rqe" x="65" y="23"></block></xml>
     `;
-    var xml = Blockly.Xml.textToDom(xmlData);
-    Blockly.Xml.domToWorkspace(xml, Blockly.mainWorkspace);
+    this.renderXml(xmlData);
   }
 
   addBlocks () {
@@ -51,12 +50,27 @@ class CodeMode extends Component {
     this.props.openMenu();
   }
 
-  saveProject () {
-     storage.add('hello');
+  newProject () {
+    this.addStartBlockToStage();
+    storage.currentProjectId = null;
   }
 
-  renderXml () {
-    let xml = ``;
+  saveProject () {
+    if (storage.currentProjectId) {
+      storage.update(storage.currentProjectId);
+    } else {
+      var name = prompt("请输入项目名称","");
+      if (name!=null && name!="") {
+        let id = storage.add(name);
+        storage.currentProjectId = id;
+      }
+    }
+  }
+
+  renderXml (xmlData) {
+    Blockly.mainWorkspace.clear();
+    let xml = Blockly.Xml.textToDom(xmlData);
+    Blockly.Xml.domToWorkspace(xml, Blockly.mainWorkspace);
   }
 
   injectBlockly () {
@@ -83,6 +97,7 @@ class CodeMode extends Component {
         <div className="topbar code-topbar">
           <button className="btn-project btn fa fa-folder-o" onTouchStart={this.openProjectMenu.bind(this)}></button>
           <button className="btn-save btn fa fa-save" onTouchStart={this.saveProject.bind(this)}></button>
+          <button className="btn-new btn fa fa-file-o" onTouchStart={this.newProject.bind(this)}></button>
         </div>
         <div className="box-content code-content" id="blocklyDiv">
 

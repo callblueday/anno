@@ -2,59 +2,43 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ReactModal from 'react-modal';
 import MenuItem from './menu-item';
+import storage from '../js/storage';
 import './style.scss';
 
 const {
     closeMenu
-} = require('../../../reducers/code');
+} = require('src/reducers/code');
 
 class Menu extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      projectList: [
-        {
-          "name": "项目1",
-          "id": 1
-        },
-        {
-          "name": "项目2",
-          "id": 2
-        },
-        {
-          "name": "项目3",
-          "id": 3
-        },
-        {
-          "name": "项目4",
-          "id": 4
-        },
-        {
-          "name": "项目5",
-          "id": 5
-        },
-        {
-          "name": "项目6",
-          "id": 6
-        }
-      ]
+      projectList: []
     };
   }
 
   componentDidMount () {
-
+    this.updateProjectList();
   }
 
   componentWillUnmount () {
 
   }
 
-  close () {
-    this.props.closeMenu();
+  updateProjectList () {
+    let projectData = storage.fetchData();
+    this.setState({
+      projectList: projectData
+    })
   }
 
-  loadProject () {
+  updateProjectId (id) {
+    storage.currentProjectId = id;
+  }
 
+  close () {
+    this.props.closeMenu();
   }
 
   render() {
@@ -76,7 +60,10 @@ class Menu extends Component {
           {
             projectList.map((item, idx) => {
               if(item) {
-                return <MenuItem projectData={item} key={item.id} />
+                return <MenuItem projectData={item} key={item.id}
+                closeMenu={this.close.bind(this)}
+                updateProjectId={this.updateProjectId.bind(this)}
+                updateProjectList={this.updateProjectList.bind(this)}/>
               }
             })
           }

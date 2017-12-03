@@ -10,6 +10,8 @@ class Storage {
     this.stashedWorkspaceId = "HelloToWork";
     window.storeList = this.storeList = [];
 
+    this.currentProjectId = null;
+
     // 用于存储用户项目数据
     this.loadProjects();
   }
@@ -45,7 +47,7 @@ class Storage {
     data.id = item.id;
     data.name = item.name;
     data.saved = projectHasBeenSaved;
-    var xml = Blockly.Xml.workspaceToDom(workspace);
+    var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
     data.xmlData = Blockly.Xml.domToText(xml);
     data.time = new Date().getTime();
     var result = JSON.stringify(data);
@@ -83,7 +85,7 @@ class Storage {
 
     data.id = id;
     data.name = name;
-    var xml = Blockly.Xml.workspaceToDom(workspace);
+    var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
     data.xmlData = Blockly.Xml.domToText(xml);
     data.time = new Date().getTime();
     this.storeList.unshift(data);
@@ -107,7 +109,7 @@ class Storage {
         }
         this.storeList.splice(i, 1);
         this.save();
-        console.log('delete successfully');
+        callback && callback();
         break;
       }
     }
@@ -146,7 +148,7 @@ class Storage {
   update(id, callback) {
     console.log('update：' + id);
 
-    var xml = Blockly.Xml.workspaceToDom(workspace);
+    var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
     var xmlData = Blockly.Xml.domToText(xml);
 
     for (var i = 0; i < this.storeList.length; i++) {
@@ -222,42 +224,12 @@ class Storage {
       this.storeList = JSON.parse(dataString);
     } else {
       this.storeList = [
-        // {
-        //   'xmlData': '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="when_start" id="OcxCCD38zyUPRLVDVGA1" x="-29" y="125"></block><block type="when_start" id="PiUysfGdkZ61HRSuEHdl" x="-28" y="187"></block></xml>',
-        //   'name': '1run forward and backward',
-        //   'time': '1479975175671',
-        //   'id': '6'
-        // },
-        // {
-        //   'xmlData': '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="when_start" id="OcxCCD38zyUPRLVDVGA1" x="-29" y="125"></block><block type="when_start" id="PiUysfGdkZ61HRSuEHdl" x="-28" y="187"></block><block type="when_start" id="TcnwnZn7nphYvkuynCwg" x="-30" y="269"></block><block type="when_start" id="1WnXIo05YAlnBT5I4hyx" x="-31" y="370"></block></xml>',
-        //   'name': '2run forward and backward',
-        //   'time': '1479975175681',
-        //   'id': '5'
-        // },
-        // {
-        //   'xmlData': '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="when_start" id="OcxCCD38zyUPRLVDVGA1" x="-29" y="125"></block><block type="when_start" id="1WnXIo05YAlnBT5I4hyx" x="226" y="158"></block><block type="when_start" id="TcnwnZn7nphYvkuynCwg" x="96" y="293"></block><block type="when_start" id="PiUysfGdkZ61HRSuEHdl" x="227" y="522"></block></xml>',
-        //   'name': '3run forward and backward',
-        //   'time': '1479975175771',
-        //   'id': '4'
-        // },
-        // {
-        //   'xmlData': '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="when_start" id="OcxCCD38zyUPRLVDVGA1" x="-29" y="125"></block><block type="when_start" id="1WnXIo05YAlnBT5I4hyx" x="226" y="158"></block><block type="when_start" id="TcnwnZn7nphYvkuynCwg" x="96" y="293"></block><block type="when_start" id="kCRYqIWIjSTNl1gO3Um5" x="-71" y="533"></block><block type="when_start" id="PiUysfGdkZ61HRSuEHdl" x="227" y="522"></block></xml>',
-        //   'name': '4run forward and backward',
-        //   'time': '1479975176671',
-        //   'id': '3'
-        // },
-        // {
-        //   'xmlData': '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="when_start" id="TcnwnZn7nphYvkuynCwg" x="83" y="31"></block><block type="when_start" id="kCRYqIWIjSTNl1gO3Um5" x="-30" y="94"></block><block type="when_start" id="1WnXIo05YAlnBT5I4hyx" x="186" y="83"></block><block type="when_start" id="OcxCCD38zyUPRLVDVGA1" x="269" y="135"></block><block type="when_start" id="PiUysfGdkZ61HRSuEHdl" x="336" y="192"></block></xml>',
-        //   'name': '5run forward and backward',
-        //   'time': '1479975185671',
-        //   'id': '2'
-        // },
-        // {
-        //   'xmlData': '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="when_start" id="TcnwnZn7nphYvkuynCwg" x="143" y="-13"></block><block type="when_start" id="1WnXIo05YAlnBT5I4hyx" x="142" y="56"></block><block type="when_start" id="kCRYqIWIjSTNl1gO3Um5" x="-30" y="94"></block><block type="when_start" id="OcxCCD38zyUPRLVDVGA1" x="303" y="91"></block><block type="when_start" id="9FIJPG5ECuz8Rg25WA5U" x="150" y="149"></block><block type="when_start" id="PiUysfGdkZ61HRSuEHdl" x="150" y="233"></block><block type="when_start" id="ZP8o4UtrFVNMqGaZb9b2" x="9" y="287"></block><block type="when_start" id="lS87SeFX55ZGriKGivR2" x="289" y="288"></block><block type="when_start" id="WqU2NzQeieHYUvfKOky7" x="12" y="367"></block><block type="when_start" id="uKFxNVcFjgcr4EOuc9oN" x="291" y="369"></block><block type="when_start" id="lclAjRDAMuvokc83VRoh" x="-24" y="478"></block><block type="when_start" id="hVBUU83L57UbpOry17B3" x="324" y="478"></block></xml>',
-        //   'name': '6run forward and backward',
-        //   'time': '1479975275671',
-        //   'id': '1'
-        // }
+        {
+          'xmlData': '<xml xmlns="http://www.w3.org/1999/xhtml"><variables></variables><block type="when_start" id="@fiknb:[[;iHSVP%1rqe" x="65" y="23"><next><block type="move_axis" id="|~5!M)(Q=A9r{E8j#^O."><field name="AXIS">A</field><value name="ANGLE"><shadow type="math_number" id="NSVbe#KsK#Z.%H{{ugv#"><field name="NUM">10</field></shadow></value><value name="SPEED"><shadow type="math_number" id="!Lv$@;}/m(MuvWwu+Cgs"><field name="NUM">1000</field></shadow></value></block></next></block></xml>',
+          'name': 'project1',
+          'time': '1479975175671',
+          'id': '6'
+        }
       ];
     }
     return this.storeList;
