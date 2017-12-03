@@ -9,6 +9,7 @@ import Toolbar from '../toolbar/toolbar';
 import RunButton from './run-button/run-button';
 import LinkDialog from '../link-dialog/link-dialog';
 import Menu from './project/menu';
+import toast from 'src/components/message-box/message-box';
 import storage from './js/storage';
 import './code-mode.scss';
 
@@ -57,12 +58,17 @@ class CodeMode extends Component {
 
   saveProject () {
     if (storage.currentProjectId) {
-      storage.update(storage.currentProjectId);
+      storage.update(storage.currentProjectId, ()=> {
+        toast("更新成功！");
+      });
     } else {
       var name = prompt("请输入项目名称","");
-      if (name!=null && name!="") {
+      if (name.length == 0) {
+        toast("您输入的项目名称不能为空");
+      } else if (name) {
         let id = storage.add(name);
         storage.currentProjectId = id;
+        toast("保存成功！");
       }
     }
   }
@@ -105,6 +111,7 @@ class CodeMode extends Component {
         <RunButton />
         <LinkDialog />
         <Menu />
+
       </section>
     );
   }

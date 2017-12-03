@@ -159,7 +159,8 @@ class Storage {
         this.storeList[i].xmlData = xmlData;
         this.storeList[i].time = new Date().getTime();
         this.save();
-        this.showTip('success', _i18n['SAVE_SUCCESS']);
+        callback && callback();
+
         break;
       }
     }

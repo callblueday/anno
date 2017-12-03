@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import storage from '../js/storage';
+import toast from 'src/components/message-box/message-box';
 import './style.scss';
 
 class MenuItem extends Component {
@@ -36,6 +37,7 @@ class MenuItem extends Component {
     if (r == true) {
       storage.delete(item.id, () => {
         that.props.updateProjectList();
+        toast("删除成功！");
       });
     } else {
 
