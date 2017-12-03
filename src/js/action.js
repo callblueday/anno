@@ -72,14 +72,14 @@ class Action {
     let modeMaps = {
       "paishe-open": "M10",
       "paishe-close": "M11",
-      "penqi-open": "M10",
-      "penqi-close": "M11",
-      "jiaqu-open": "M10",
-      "jiaqu-close": "M11",
-      "xiqu-open": "M10",
-      "xiqu-close": "M11",
-      "hanjie-open": "M10",
-      "hanjie-close": "M11"
+      "penqi-open": "M12",
+      "penqi-close": "M13",
+      "jiaqu-open": "M14",
+      "jiaqu-close": "M15",
+      "xiqu-open": "M16",
+      "xiqu-close": "M17",
+      "hanjie-open": "M18",
+      "hanjie-close": "M19"
     };
     comm.send(modeMaps[mode]);
   }

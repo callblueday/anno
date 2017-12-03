@@ -1,5 +1,5 @@
-import BlockBuilder from './block-builder';
-import { action } from '../../../js/action';
+import BlockBuilder from '../block-builder';
+import { action } from 'src/js/action';
 
 const angleRange = {
   "A": [-180, 180],

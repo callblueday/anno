@@ -12,6 +12,12 @@ module.exports = {
         port: process.env.PORT || 8610
     },
     devtool: 'cheap-module-source-map',
+    resolve: {
+        alias:{
+            src:path.resolve(__dirname, 'src')
+        },
+        extensions:['.js','.json','.jsx','.svg','css']
+    },
     entry: {
         lib: ['react', 'react-dom'],
         index: path.resolve(__dirname, 'src/index.js')
