@@ -4,15 +4,36 @@
   position: relative;
   padding: 0.8rem 1rem;
   height: $toolbar-height;
-  background: #ccc;
+  text-align: center;
+}
+
+.app-toolbar span.title {
+  display: inline-block;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 330;
+  width: 10rem;
+  position: absolute;
+  left: 50%;
+  margin-left: -5rem;
+  top: 1rem;
+}
+
+.return-back, .ble-btn {
+  width: 2.8rem;
+  height: 2.8rem;
+  border: 0;
+  outline: none;
+}
+
+.return-back {
+  float: left;
+  @include bg-url("icon-back.png");
 }
 
 .ble-btn {
   float: right;
-  border: 1px solid #333;
-  padding: 0.3rem 0.8rem;
-  background: #fff;
-  outline: none;
+  @include bg-url("icon-bluetooth.png");
 }
 
 .ble-btn-active {

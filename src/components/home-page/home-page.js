@@ -7,36 +7,24 @@ import './home-page.scss';
 
 const appList = [
   {
-    "text": "调试模式",
+    "text": "调试",
     "name": "cmdMode"
   },
-  // {
-  //   "text": "超能魔块",
-  //   "name": "magicMod"
-  // },
-  // {
-  //   "text": "飞机",
-  //   "name": "huasheng"
-  // },
   {
-    "text": "手柄模式",
+    "text": "操控",
     "name": "controlMode"
   },
   {
-    "text": "编程模式",
+    "text": "编程",
     "name": "codeMode"
-  },
-  // {
-  //   "text": "键盘模式",
-  //   "name": "keyboardMode"
-  // },
-]
+  }
+];
 
 class HomePage extends Component {
   render() {
     return (
       <section className="app-body">
-        <Toolbar />
+        <Toolbar nameMap={appList}/>
         <StorySlider list={appList} />
         <LinkDialog />
       </section>

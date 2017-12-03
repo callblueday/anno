@@ -5,13 +5,37 @@
   flex-direction: column;
 
   .tool-bar {
-    background: #ddd;
     height: 90px;
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+
+    .cbtn {
+      width: 6rem;
+      height: 6rem;
+      outline: none;
+      border:0;
+      border-radius: 6rem;
+      -webkit-border-radius: 6rem;
+    }
+
+    .cbtn:nth-child(1) {
+      @include bg-url("icon-paishe.png");
+    }
+    .cbtn:nth-child(2) {
+      @include bg-url("icon-penqi.png");
+    }
+    .cbtn:nth-child(3) {
+      @include bg-url("icon-jiaqu.png");
+    }
+    .cbtn:nth-child(4) {
+      @include bg-url("icon-xiqu.png");
+    }
+    .cbtn:nth-child(5) {
+      @include bg-url("icon-hanjie.png");
+    }
   }
 
   .zone-wrapper {
@@ -28,13 +52,26 @@
     flex-shrink: 0;
     height: 100%;
     position: relative;
+
+    .nipple {
+      opacity: 1!important;
+    }
+  }
+
+  .back {
+    opacity: 1!important;
+    background: url(#{$img-path}/bg-joystick.png) no-repeat center!important;
+    background-size: 100% 100%!important;
   }
 
   .front {
+    opacity: 1!important;
     display: flex!important;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    background: url(#{$img-path}/icon-joystick.png) no-repeat center!important;
+    background-size: 100% 100%!important;
   }
 
   .btn-selected {

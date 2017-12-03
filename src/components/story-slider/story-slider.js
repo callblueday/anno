@@ -33,9 +33,11 @@ export default class StorySlider extends Component {
         <ul className="swiper-wrapper">
           {
             this.props.list.map((item, index) => {
+              let className = `swiper-slide slider-${item.name}`;
               return (
-                <li className="swiper-slide" key={index}>
-                  <Link to={'/' + item.name}>{ item.text }</Link>
+                <li className={className} key={index}>
+                  <Link to={'/' + item.name}></Link>
+                  <span className="title">{ item.text }</span>
                 </li>
               )
             })

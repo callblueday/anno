@@ -112,7 +112,7 @@ class ControlMode extends Component {
       restOpacity: 0.8
     };
     var joystick = nipplejs.create(options);
-    this.addJoyStickName(joystick, eleId);
+    // this.addJoyStickName(joystick, eleId);
     return joystick;
   }
 
@@ -241,19 +241,19 @@ class ControlMode extends Component {
           <div className="tool-bar">
             <button data-mode="paishe" className={
               this.state["paishe"] ? "cbtn btn-selected" : "cbtn"
-            } onTouchStart={this.toggle.bind(this)}>拍摄</button>
+            } onTouchStart={this.toggle.bind(this)}></button>
             <button data-mode="penqi" className={
               this.state["penqi"] ? "cbtn btn-selected" : "cbtn"
-            } onTouchStart={this.toggle.bind(this)}>喷漆</button>
+            } onTouchStart={this.toggle.bind(this)}></button>
             <button data-mode="jiaqu" className={
               this.state["jiaqu"] ? "cbtn btn-selected" : "cbtn"
-            } onTouchStart={this.toggle.bind(this)}>夹取</button>
+            } onTouchStart={this.toggle.bind(this)}></button>
             <button data-mode="xiqu" className={
               this.state["xiqu"] ? "cbtn btn-selected" : "cbtn"
-            } onTouchStart={this.toggle.bind(this)}>吸取</button>
+            } onTouchStart={this.toggle.bind(this)}></button>
             <button data-mode="hanjie" className={
               this.state["hanjie"] ? "cbtn btn-selected" : "cbtn"
-            } onTouchStart={this.toggle.bind(this)}>焊接</button>
+            } onTouchStart={this.toggle.bind(this)}></button>
           </div>
 
           <div className="zone-wrapper">

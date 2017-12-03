@@ -4,6 +4,7 @@
 $gray: #666;
 $gray-dark: #333;
 $gray-light: #999;
+$img-path: '/static/images';
 
 /* 顶部工具栏高度 */
 $toolbar-height: 4.2rem;
@@ -12,6 +13,12 @@ $toolbox-width: 11rem;
 
 /* topbar */
 $topbar-padding: 5rem;
+
+
+@mixin bg-url($picName) {
+    background: url(#{$img-path}/#{$picName}) no-repeat center;
+    background-size: 100% 100%;
+}
 
 * {
   user-select: none;

@@ -201,10 +201,6 @@ class CmdMode extends Component {
                 <button type="button" className="btn btn-default col-xs-3 btn-send" onTouchStart={this.send.bind(this)}>Send</button>
               </div>
             </form>
-
-            <div className="col-xs-12 menus">
-              <button id="btn-cmd-add" className="btn fa fa-plus"></button>
-            </div>
           </div>
         </div>
         <LinkDialog />
