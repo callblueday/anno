@@ -158,5 +158,18 @@ export default class MoveBlocks {
       action.setMode(type);
     });
 
+    BlockBuilder.makeBlock('move_reset_position', [], function() {
+      this.jsonInit({
+        "message0": '回到初始位置',
+        "args0": [],
+        "previousStatement": true,
+        "nextStatement": true,
+        "inputsInline": true,
+        "colour": BlockBuilder.HUE.move
+      });
+    }, function(){
+      action.resetPositon();
+    });
+
   }
 }

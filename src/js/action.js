@@ -67,6 +67,10 @@ class Action {
     comm.send(cmd);
   }
 
+  resetPositon () {
+    this.moveAllAxis (0, 0, 0, 0, 0, 0, 1000);
+  }
+
   // 设置固件模式
   setMode (mode) {
     let modeMaps = {
