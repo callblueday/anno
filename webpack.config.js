@@ -43,9 +43,12 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                // loaders: ['style-loader', 'css-loader', 'sass-loader'],
-                loader: "style-loader!css-loader!resolve-url-loader!sass-loader"
+                loaders: ['style-loader', 'css-loader', 'sass-loader']
             },
+            {
+        　　　　　　test: /\.(png|jpg)$/,
+        　　　　　　loader: 'file-loader'
+        　　},
             {
                 test: /\.(woff|woff2|svg|eot|ttf)\??.*$/,
                 loader: 'file-loader?name=./dev/view/scss/[name].[ext]'
@@ -73,10 +76,6 @@ module.exports = {
             {
                 from: 'src/fonts',
                 to: 'static/fonts'
-            },
-            {
-                from: 'src/images',
-                to: 'static/images'
             },
             {
                 from: 'src/components/code-mode/lib/',
