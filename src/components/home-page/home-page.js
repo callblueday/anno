@@ -23,7 +23,7 @@ const appList = [
 class HomePage extends Component {
   render() {
     return (
-      <section className="app-body">
+      <section className="box app-body">
         <Toolbar nameMap={appList}/>
         <StorySlider list={appList} />
         <LinkDialog />

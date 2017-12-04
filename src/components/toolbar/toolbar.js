@@ -10,20 +10,12 @@ const {
   toggleLinkDialog
 } = require('../../reducers/interface');
 
-const appList = [
-  {
-    "text": "调试",
-    "name": "cmdMode"
-  },
-  {
-    "text": "操控",
-    "name": "controlMode"
-  },
-  {
-    "text": "编程",
-    "name": "codeMode"
-  }
-];
+const titleMap = {
+  "app-body": "主界面",
+  "cmd-mode": "调试",
+  "control-mode": "操控",
+  "code-mode": "编程"
+};
 
 class Toolbar extends React.Component {
     constructor (props) {
@@ -39,17 +31,10 @@ class Toolbar extends React.Component {
     }
 
     updateTitle () {
-      let hash = location.href.split('/#/')[1];
-      let title = '主界面';
-      for (let item of appList) {
-        if (item.name === hash) {
-          title = item.text;
-          this.setState({
-            "title": title
-          });
-          break;
-        }
-      }
+      let hash = document.querySelector('.box').getAttribute("class").split(" ")[1];
+      this.setState({
+        "title": titleMap[hash]
+      });
     }
 
     render () {
