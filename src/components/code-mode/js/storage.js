@@ -220,7 +220,12 @@ class Storage {
   }
 
   loadProjectsFromLocalStorage() {
-    var dataString = window.localStorage[this.storageKey];
+    var dataString = null;
+    try {
+      dataString = window.localStorage[this.storageKey];
+    } catch (e) {
+
+    }
     if (dataString && JSON.parse(dataString).length) {
       this.storeList = JSON.parse(dataString);
     } else {
