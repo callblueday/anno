@@ -12,7 +12,6 @@ import ControlMode from './components/control-mode/control-mode';
 import CmdMode from './components/cmd-mode/cmd-mode';
 import KeyboardMode from './components/keyboard-mode/keyboard-mode';
 import MagicMod from './components/magic-mod/magic-mod';
-import Huasheng from './components/huasheng/huasheng';
 import ServoEditor from './components/servo-editor/servo-editor';
 import ServoControl from './components/servo-control';
 import App from './js/app';
@@ -30,7 +29,6 @@ render(
         <Route path="/controlMode" exact component={ControlMode} />
         <Route path="/keyboardMode" exact component={KeyboardMode} />
         <Route path="/magicMod" exact component={MagicMod} />
-        <Route path="/huasheng" exact component={Huasheng} />
         <Route path="/servoEditor" exact component={ServoEditor} />
         <Route path="/servoControl" exact component={ServoControl} />
       </Switch>

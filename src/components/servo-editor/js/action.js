@@ -57,6 +57,11 @@ class Action {
   setLed (type) {
     this.doBleRequest(type);
   }
+
+  // 设置动作组
+  setAction (type) {
+    this.doBleRequest(type);
+  }
 }
 
 export const action = new Action();

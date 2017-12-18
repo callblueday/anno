@@ -15,10 +15,6 @@ const appList = [
   //   "name": "magicMod"
   // },
   // {
-  //   "text": "飞机",
-  //   "name": "huasheng"
-  // },
-  // {
   //   "text": "手柄模式",
   //   "name": "controlMode"
   // },
