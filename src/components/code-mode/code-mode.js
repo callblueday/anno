@@ -80,10 +80,12 @@ class CodeMode extends Component {
     return (
       <section className="box code-mode">
         <Toolbar />
-        {/*<div className="topbar code-topbar">
-          <button className="btn-project btn fa fa-folder-o" onTouchStart={this.openProjectMenu.bind(this)}></button>
-          <button className="btn-save btn fa fa-save" onTouchStart={this.saveProject.bind(this)}></button>
-        </div>*/}
+        {
+          <div className="topbar code-topbar">
+            <button className="btn-project btn fa fa-folder-o" onTouchStart={this.openProjectMenu.bind(this)}></button>
+            <button className="btn-save btn fa fa-save" onTouchStart={this.saveProject.bind(this)}></button>
+          </div>
+        }
         <div className="box-content code-content" id="blocklyDiv">
 
         </div>
